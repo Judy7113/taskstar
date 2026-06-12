@@ -1,71 +1,137 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Task Island｜任務小島</title>
-  <style>
-    :root{--bg1:#dff7ff;--bg2:#fff2dc;--bg3:#ffe6ef;--card:#ffffffd9;--text:#4b3b2f;--muted:#8a7464;--accent:#ffb84d;--pink:#ff9bb3;--green:#92d49a;--blue:#92d9ff;--brown:#7a4e35;}
-    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC','Segoe UI',sans-serif;background:radial-gradient(circle at 20% 10%,#fff 0 8%,transparent 9%),linear-gradient(160deg,var(--bg1),var(--bg2) 55%,var(--bg3));color:var(--text);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;}
-    .phone{width:min(430px,100%);min-height:835px;background:linear-gradient(180deg,#fffdf8,#fff5e8);border-radius:40px;box-shadow:0 28px 90px #71b7cc55;border:9px solid #fff;overflow:hidden;position:relative;padding:22px;}
-    .phone:before{content:'☁️';position:absolute;left:18px;top:16px;font-size:26px;opacity:.55}.phone:after{content:'✨';position:absolute;right:22px;top:20px;font-size:24px;opacity:.75}
-    .screen{display:none}.screen.active{display:block}
-    .login{height:770px;display:flex;flex-direction:column;justify-content:center;gap:14px;position:relative}.login-card,.entry-card{background:#ffffffc9;border:2px solid #fff;border-radius:34px;padding:22px;box-shadow:0 18px 45px #c9a76b26}.logo{font-size:54px;text-align:center;filter:drop-shadow(0 8px 10px #ffb84d33)}.title{text-align:center;font-size:32px;font-weight:950;letter-spacing:.3px}.sub{text-align:center;line-height:1.65;color:var(--muted);font-size:15px}.field{background:#fff;border:2px solid #f3dec7;border-radius:20px;padding:14px 16px;font-size:16px;width:100%;outline:none;box-shadow:inset 0 2px 0 #fff7ef}.field:focus{border-color:#ffbdcf;box-shadow:0 0 0 4px #ff9bb326}.label{font-weight:900;margin-top:4px}.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice{border:2px solid #f4dfc8;background:#fff;border-radius:20px;padding:12px 8px;text-align:center;font-weight:900;cursor:pointer;box-shadow:0 8px 18px #c9a76b18;transition:.18s}.choice span{display:block;font-size:25px;margin-bottom:3px}.choice.active{border-color:#ff9bb3;background:#fff0f5;transform:translateY(-2px);box-shadow:0 10px 22px #ff9bb340}.btn{border:0;border-radius:24px;background:linear-gradient(135deg,#ffd271,#ff9bb3);padding:15px 20px;font-weight:950;font-size:16px;color:#5a3929;box-shadow:0 12px 26px #ff9bb355;cursor:pointer}.btn:active{transform:scale(.98)}
-    .entry{height:770px;display:flex;align-items:center;justify-content:center;text-align:center}.entry-emoji{font-size:92px;animation:bounce 1.8s infinite ease-in-out}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.date{font-weight:950;background:#fff7dd;border:2px solid #fff;border-radius:18px;padding:10px 14px;box-shadow:0 8px 18px #c9a76b1d}.hello{font-size:24px;font-weight:950}.tag{color:var(--muted);font-size:14px;margin-top:2px}.island{height:335px;border-radius:36px;background:linear-gradient(180deg,#b9f0ff,#fff4cf);position:relative;overflow:hidden;margin:18px 0;box-shadow:inset 0 -20px 42px #ffe0a2,0 14px 35px #8ac4d02b}.sun{position:absolute;right:42px;top:32px;font-size:40px;animation:float 2.4s infinite ease-in-out}.cloud{position:absolute;background:#fff;border-radius:999px;opacity:.85}.c1{width:96px;height:35px;left:28px;top:48px}.c2{width:72px;height:28px;right:34px;top:88px}.ground{position:absolute;left:45px;right:45px;bottom:38px;height:95px;background:#9ed889;border-radius:55% 55% 45% 45%;box-shadow:0 18px 0 #75b96e}.house{position:absolute;left:168px;bottom:102px;width:88px;height:76px;background:#fff4d8;border-radius:18px;box-shadow:0 8px 0 #e0b178}.roof{position:absolute;left:154px;bottom:168px;width:118px;height:58px;background:#ff9b7a;clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:8px}.tree{position:absolute;left:88px;bottom:108px;width:54px;height:92px}.tree:before{content:'';position:absolute;left:21px;bottom:0;width:16px;height:58px;background:#b77945;border-radius:12px}.tree:after{content:'';position:absolute;left:0;top:0;width:58px;height:58px;background:#69bf74;border-radius:50%;box-shadow:18px 18px 0 #89d889,-18px 18px 0 #7fd083}.bear{position:absolute;left:165px;bottom:40px;font-size:78px;filter:drop-shadow(0 9px 8px #0002);animation:bounce 1.8s infinite ease-in-out;z-index:3}.jar{position:absolute;right:22px;bottom:28px;width:82px;height:112px;background:#ffffff93;border:3px solid #fff;border-radius:24px 24px 34px 34px;box-shadow:inset 0 0 18px #aee8ff,0 8px 18px #8ac4d044;text-align:center;padding-top:23px;font-size:27px;z-index:4}.jar span{font-size:15px;font-weight:950;display:block;margin-top:2px}.spark{position:absolute;left:70px;top:120px;font-size:22px;animation:float 2s infinite ease-in-out}.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:var(--card);border:2px solid #fff;border-radius:26px;padding:16px;box-shadow:0 12px 30px #c9a76b22}.card b{display:block;font-size:18px;margin-bottom:8px}.tasks{margin-top:14px;display:flex;flex-direction:column;gap:10px}.task{background:#fff;border-radius:20px;padding:14px;display:flex;justify-content:space-between;align-items:center;border:2px solid #f4e3cd;box-shadow:0 8px 18px #c9a76b14}.task button{border:0;border-radius:14px;background:#fff1c8;padding:8px 10px;font-weight:900;color:#7a4e35}.task.done{text-decoration:line-through;opacity:.55}.nav{position:absolute;bottom:18px;left:22px;right:22px;display:flex;justify-content:space-around;background:#ffffffdf;border:2px solid #fff;border-radius:28px;padding:12px;box-shadow:0 10px 30px #c9a76b33}.nav button{border:0;background:transparent;font-size:25px}.center{transform:scale(1.28)}@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-  </style>
-</head>
-<body>
-  <main class="phone">
-    <section id="login" class="screen active login">
-      <div class="login-card">
-        <div class="logo">🏝️🧸⭐</div>
-        <div class="title">Task Island</div>
-        <div class="sub">先建立你的可愛小島身份。<br>完成任務、收集星星，和小寶一起升級小島 ✨</div>
-        <input id="nameInput" class="field" placeholder="你的名字 / 暱稱" />
-        <input id="emailInput" class="field" placeholder="Email / 學號 / 聯絡資訊" />
-        <div class="label">你今天是哪一種小島主？</div>
-        <div class="choice-grid" id="identityChoices">
-          <button class="choice active" data-value="學生"><span>🎒</span>學生</button>
-          <button class="choice" data-value="社團幹部"><span>🌟</span>社團幹部</button>
-          <button class="choice" data-value="上班族"><span>💼</span>上班族</button>
-          <button class="choice" data-value="自由安排者"><span>🌈</span>自由安排者</button>
-        </div>
-        <button class="btn" style="width:100%;margin-top:14px" onclick="login()">🧸 建立小島身份</button>
-      </div>
-    </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>任務島 Task Island</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="login-shell" id="login-screen">
+  <section class="login-card">
+    <div class="login-emoji">🧸🏝️⭐</div>
+    <p class="eyebrow">Welcome</p>
+    <h1>登入任務島</h1>
+    <p class="login-subtitle">填好名字，選一個身份，就可以進入你的小島。</p>
+    <label class="login-label">名字<input id="login-name" type="text" placeholder="例如：Fang" /></label>
+    <label class="login-label">Email / 資訊<input id="login-info" type="text" placeholder="可以填 Email 或暱稱" /></label>
+    <div class="role-picker" id="role-picker">
+      <button type="button" class="role-card active" data-role="學生">🎒<span>學生</span></button>
+      <button type="button" class="role-card" data-role="社團幹部">🌟<span>社團幹部</span></button>
+      <button type="button" class="role-card" data-role="上班族">💼<span>上班族</span></button>
+      <button type="button" class="role-card" data-role="自由安排者">🌈<span>自由安排者</span></button>
+    </div>
+    <button class="primary-action login-submit" id="login-submit" type="button">🌈 進入我的小島</button>
+  </section>
+</main>
+<main class="app-shell" id="app-screen" style="display:none;">
+      <section class="phone-frame" aria-label="Task Island prototype">
+        <header class="topbar">
+          <button class="icon-btn" type="button" aria-label="開啟選單" title="開啟選單">
+            <span></span><span></span><span></span>
+          </button>
+          <div>
+            <p class="date-pill" id="today-date">今天</p>
+            <h1>任務島 Task Island</h1>
+          </div>
+          <button class="avatar-btn" type="button" aria-label="個人檔案">F</button>
+        </header>
 
-    <section id="entry" class="screen entry">
-      <div class="entry-card">
-        <div class="entry-emoji">🏝️</div>
-        <div class="title">你的任務小島準備好了</div>
-        <div class="sub">小寶已經在島上等你。<br>點下面的按鈕正式進入今天的小島 ✨</div>
-        <button class="btn" style="width:100%;margin-top:18px" onclick="enterIsland()">🌈 進入我的小島</button>
-      </div>
-    </section>
+        <nav class="mode-tabs" aria-label="主要頁籤">
+          <button class="tab active" data-view="home" type="button">首頁</button>
+          <button class="tab" data-view="tasks" type="button">任務</button>
+          <button class="tab" data-view="addtask" type="button">新增</button>
+          <button class="tab" data-view="focus" type="button">專注</button>
+          <button class="tab" data-view="jar" type="button">星星瓶</button>
+          <button class="tab" data-view="friends" type="button">好友</button>
+          <button class="tab" data-view="buddy" type="button">圓圓聊天</button>
+          <button class="tab" data-view="bag" type="button">背包</button>
+          <button class="tab" data-view="stats" type="button">統計</button>
+        </nav>
 
-    <section id="home" class="screen">
-      <div class="top"><div><div class="hello">Hi, <span id="userName">小島主</span> 🐾</div><div class="tag"><span id="identityText">學生</span>｜今天也慢慢完成就好</div></div><div class="date" id="todayText"></div></div>
-      <div class="island"><div class="sun">🌞</div><div class="cloud c1"></div><div class="cloud c2"></div><div class="spark">✨</div><div class="tree"></div><div class="roof"></div><div class="house"></div><div class="bear">🧸</div><div class="ground"></div><div class="jar">⭐💫<span id="starCount">12</span></div></div>
-      <div class="cards"><div class="card"><b>📝 今日任務</b><span>完成任務後，星星會飛進瓶子</span></div><div class="card"><b>🏡 小島升級</b><span>收集星星解鎖樹、燈、房子</span></div></div>
-      <div class="tasks" id="tasks"></div>
-      <button class="btn" style="width:100%;margin-top:14px" onclick="addTask()">➕ 新增任務</button>
-      <div class="nav"><button onclick="enterIsland()">🏝️</button><button onclick="alert('星星瓶目前有 '+stars+' 顆星星 ⭐')">⭐</button><button class="center" onclick="alert('小寶：你今天也很棒 🧸💛')">🧸</button><button onclick="alert('朋友互動即將開放 💌')">💌</button></div>
-    </section>
-  </main>
-  <script>
-    const weekdays=['日','一','二','三','四','五','六'];
-    const tasks=['🧸 完成今日三件事','📚 整理英文簡報','💧 喝水＋休息一下'];
-    let stars=12;
-    let selectedIdentity='學生';
-    function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
-    function setDate(){const d=new Date();document.getElementById('todayText').textContent=`${d.getMonth()+1}/${d.getDate()}（${weekdays[d.getDay()]}）`;}
-    document.querySelectorAll('.choice').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.choice').forEach(b=>b.classList.remove('active'));btn.classList.add('active');selectedIdentity=btn.dataset.value;});});
-    function login(){const name=document.getElementById('nameInput').value.trim()||'小島主';localStorage.setItem('taskIslandName',name);localStorage.setItem('taskIslandIdentity',selectedIdentity);document.getElementById('userName').textContent=name;document.getElementById('identityText').textContent=selectedIdentity;setDate();renderTasks();showScreen('entry');}
-    function enterIsland(){setDate();renderTasks();showScreen('home');}
-    function renderTasks(){const box=document.getElementById('tasks');box.innerHTML='';tasks.forEach((t)=>{const div=document.createElement('div');div.className='task';div.innerHTML=`<span>${t}</span><button onclick="doneTask(this)">完成 ⭐</button>`;box.appendChild(div);});}
-    function doneTask(btn){if(btn.parentElement.classList.contains('done'))return;btn.parentElement.classList.add('done');stars+=1;document.getElementById('starCount').textContent=stars;}
-    function addTask(){const t=prompt('新增任務');if(t){tasks.push('🌱 '+t);renderTasks();}}
-    window.addEventListener('load',()=>{const name=localStorage.getItem('taskIslandName');const id=localStorage.getItem('taskIslandIdentity');setDate();if(id){selectedIdentity=id;document.getElementById('identityText').textContent=id;}if(name){document.getElementById('userName').textContent=name;renderTasks();showScreen('entry');}});
-  </script>
-</body>
+        <section class="view active" id="home-view">
+          <div class="home-stack">
+            <article class="panel island-card">
+              <div class="island-topline">
+                <div>
+                  <p class="eyebrow">My Island</p>
+                  <h2><span class="player-name">Fang</span> 的小島</h2>
+                </div>
+                <div class="resource-pills">
+                  <div class="energy-pill">XP <span id="energy">0</span></div>
+                  <div class="energy-pill star-pill"><span>⭐</span> <span id="stars">0</span></div>
+                  <div class="energy-pill black-pill">黑星 <span id="black-stars">0</span></div>
+                </div>
+              </div>
+
+              <div class="island-scene v2" id="island-scene">
+                <div class="sky-layer" aria-hidden="true">
+                  <span class="sun">🌞</span>
+                  <span class="rainbow">🌈</span>
+                  <span class="cloud cloud-a">☁️</span>
+                  <span class="cloud cloud-b">☁️</span>
+                  <span class="cloud cloud-c">☁️</span>
+                </div>
+                <div class="emoji-island">
+                  <div class="water">💧 〰️ 💧</div>
+                  <div class="island-land">
+                    <span class="tree-e">🌳</span>
+                    <span class="house-e">🏡</span>
+                    <span class="flower-e">🌷</span>
+                    <span class="bear-e" id="mini-buddy">🧸</span>
+                    <span class="lamp-e">💡</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <div class="dashboard-grid">
+              <article class="panel">
+                <p class="eyebrow">Today</p>
+                <h2>今日任務</h2>
+                <div class="task-list" id="task-list"></div>
+              </article>
+              <article class="panel">
+                <p class="eyebrow">Buddy</p>
+                <h2>圓圓陪你</h2>
+                <div class="buddy-mini">🧸</div>
+                <button class="primary-action" id="focus-button" type="button">陪我專注 25 分鐘</button>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="tasks-view"><article class="panel"><h2>任務清單</h2><div class="task-list" id="deadline-list"></div></article></section>
+        <section class="view" id="addtask-view"><article class="panel"><h2>新增任務</h2><input id="new-task-title" placeholder="輸入任務"/><input id="new-task-date" type="date"/><button class="primary-action" id="create-task" type="button">新增任務 ⭐</button></article></section>
+        <section class="view" id="focus-view"><article class="panel"><h2>專注模式</h2><div class="focus-timer" id="focus-timer">25:00</div><button class="primary-action" id="focus-page-button" type="button">開始專注</button></article></section>
+        <section class="view" id="jar-view"><article class="panel"><h2>星星瓶 ⭐</h2><div class="big-jar">⭐💫🌟<br><strong id="jar-total">0</strong></div></article></section>
+        <section class="view" id="friends-view"><article class="panel"><h2>好友小島 💌</h2><div id="friend-list"></div></article></section>
+        <section class="view" id="buddy-view"><article class="panel"><h2>圓圓聊天 🧸</h2><div id="chat-list"></div><input id="chat-input" placeholder="跟圓圓說話"/><button id="send-chat" class="primary-action">送出</button></article></section>
+        <section class="view" id="bag-view"><article class="panel"><h2>背包 🎒</h2><div id="item-list"></div></article></section>
+        <section class="view" id="stats-view"><article class="panel"><h2>統計 📊</h2><div id="calendar-grid"></div></article></section>
+
+        <footer class="bottom-nav">
+          <button class="nav-btn active" data-view="home" type="button">🏝️<span>小島</span></button>
+          <button class="nav-btn" data-view="tasks" type="button">📝<span>任務</span></button>
+          <button class="add-btn" data-view="jar" type="button" aria-label="星星瓶">⭐</button>
+          <button class="nav-btn" data-view="friends" type="button">💌<span>好友</span></button>
+          <button class="nav-btn" data-view="buddy" type="button">🧸<span>聊天</span></button>
+          <button class="nav-btn" data-view="bag" type="button">🎒<span>背包</span></button>
+        </footer>
+      </section>
+    </main>
+
+    <div class="tutorial-overlay show" id="tutorial-overlay" aria-modal="true" role="dialog">
+      <div class="tutorial-box" id="tutorial-box">
+        <p class="eyebrow">Guide</p>
+        <h2 id="tutorial-title">歡迎來到 Fang 的任務島</h2>
+        <p id="tutorial-text">完成任務會獲得彩色星星，星星會飛進星星瓶。</p>
+        <button class="primary-action" id="tutorial-next" type="button">開始經營小島</button>
+      </div>
+    </div>
+    <div class="reward-modal" id="reward-modal" aria-hidden="true"><div class="reward-card"><button class="reward-close" id="reward-close" type="button">×</button><h2>任務完成！</h2><div class="reward-stars">⭐ ⭐ ⭐</div></div></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./jar.js"></script>
+    <script src="./app.js"></script>
+  </body>
 </html>
