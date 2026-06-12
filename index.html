@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Island｜任務小島</title>
+  <style>
+    :root{--bg1:#dff6ff;--bg2:#fff1d8;--card:#ffffffcc;--text:#4b3b2f;--accent:#ffb84d;--green:#89c997;--pink:#ff9bb3;}
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC','Segoe UI',sans-serif;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:22px;}
+    .phone{width:min(430px,100%);min-height:820px;background:linear-gradient(180deg,#fffdf7,#f9efe0);border-radius:36px;box-shadow:0 24px 80px #8ac4d055;border:8px solid #fff;overflow:hidden;position:relative;padding:22px;}
+    .screen{display:none}.screen.active{display:block}.login{height:760px;display:flex;flex-direction:column;justify-content:center;gap:16px}.logo{font-size:46px;text-align:center}.title{text-align:center;font-size:30px;font-weight:900}.sub{text-align:center;line-height:1.7;color:#7b6b60}.field{background:#fff;border:2px solid #f0dfc9;border-radius:18px;padding:14px 16px;font-size:16px;width:100%;outline:none}.btn{border:0;border-radius:22px;background:linear-gradient(135deg,#ffd271,#ff9bb3);padding:15px 20px;font-weight:900;font-size:16px;color:#5a3929;box-shadow:0 10px 24px #ff9bb355;cursor:pointer}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.date{font-weight:900;background:#fff7dd;border-radius:16px;padding:10px 14px}.hello{font-size:24px;font-weight:900}.island{height:330px;border-radius:34px;background:linear-gradient(180deg,#b9f0ff,#fff4cf);position:relative;overflow:hidden;margin:18px 0;box-shadow:inset 0 -20px 40px #ffe0a2}.cloud{position:absolute;background:#fff;border-radius:999px;opacity:.8}.c1{width:92px;height:34px;left:28px;top:45px}.c2{width:70px;height:28px;right:34px;top:78px}.ground{position:absolute;left:48px;right:48px;bottom:38px;height:92px;background:#9ed889;border-radius:55% 55% 45% 45%;box-shadow:0 18px 0 #75b96e}.house{position:absolute;left:168px;bottom:100px;width:88px;height:75px;background:#fff4d8;border-radius:18px;box-shadow:0 8px 0 #e0b178}.roof{position:absolute;left:154px;bottom:165px;width:118px;height:58px;background:#ff9b7a;clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:8px}.tree{position:absolute;left:88px;bottom:108px;width:54px;height:92px}.tree:before{content:'';position:absolute;left:21px;bottom:0;width:16px;height:58px;background:#b77945;border-radius:12px}.tree:after{content:'';position:absolute;left:0;top:0;width:58px;height:58px;background:#69bf74;border-radius:50%;box-shadow:18px 18px 0 #89d889,-18px 18px 0 #7fd083}.bear{position:absolute;left:172px;bottom:44px;font-size:72px;filter:drop-shadow(0 8px 8px #0002);animation:bounce 1.8s infinite ease-in-out}.jar{position:absolute;right:24px;bottom:26px;width:78px;height:108px;background:#ffffff88;border:3px solid #fff;border-radius:24px 24px 32px 32px;box-shadow:inset 0 0 18px #aee8ff,0 8px 18px #8ac4d044;text-align:center;padding-top:28px;font-size:27px}.jar span{font-size:15px;font-weight:900;display:block}.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:var(--card);border:2px solid #fff;border-radius:24px;padding:16px;box-shadow:0 12px 30px #c9a76b22}.card b{display:block;font-size:18px;margin-bottom:8px}.tasks{margin-top:14px;display:flex;flex-direction:column;gap:10px}.task{background:#fff;border-radius:18px;padding:14px;display:flex;justify-content:space-between;align-items:center;border:2px solid #f4e3cd}.task.done{text-decoration:line-through;opacity:.55}.nav{position:absolute;bottom:18px;left:22px;right:22px;display:flex;justify-content:space-around;background:#ffffffd9;border-radius:26px;padding:12px;box-shadow:0 10px 30px #c9a76b33}.nav button{border:0;background:transparent;font-size:24px}.center{transform:scale(1.25)}@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <section id="login" class="screen active login">
+      <div class="logo">🏝️⭐🐻</div>
+      <div class="title">Task Island</div>
+      <div class="sub">登入後開始你的任務小島。<br>完成任務、收集星星，和小寶一起升級小島。</div>
+      <input id="nameInput" class="field" placeholder="你的名字" />
+      <input id="emailInput" class="field" placeholder="Email / 學號 / 聯絡資訊" />
+      <input id="infoInput" class="field" placeholder="身份資訊，例如：學生 / 社團幹部" />
+      <button class="btn" onclick="login()">進入小島</button>
+    </section>
+
+    <section id="home" class="screen">
+      <div class="top"><div><div class="hello">Hi, <span id="userName">小島主</span></div><div style="color:#7b6b60">今天也慢慢完成就好</div></div><div class="date" id="todayText"></div></div>
+      <div class="island"><div class="cloud c1"></div><div class="cloud c2"></div><div class="tree"></div><div class="roof"></div><div class="house"></div><div class="bear">🧸</div><div class="ground"></div><div class="jar">⭐<span id="starCount">12</span></div></div>
+      <div class="cards"><div class="card"><b>今日任務</b><span>完成任務後星星會進入瓶子</span></div><div class="card"><b>小島升級</b><span>收集星星解鎖樹、燈、房子</span></div></div>
+      <div class="tasks" id="tasks"></div>
+      <button class="btn" style="width:100%;margin-top:14px" onclick="addTask()">＋ 新增任務</button>
+      <div class="nav"><button>🏝️</button><button>⭐</button><button class="center">🐻</button><button>👭</button></div>
+    </section>
+  </main>
+  <script>
+    const weekdays=['日','一','二','三','四','五','六'];
+    const tasks=['完成今日三件事','整理英文簡報','喝水＋休息一下'];
+    let stars=12;
+    function setDate(){const d=new Date();document.getElementById('todayText').textContent=`${d.getMonth()+1}/${d.getDate()}（${weekdays[d.getDay()]}）`;}
+    function login(){const name=document.getElementById('nameInput').value.trim()||'小島主';localStorage.setItem('taskIslandName',name);document.getElementById('userName').textContent=name;document.getElementById('login').classList.remove('active');document.getElementById('home').classList.add('active');setDate();renderTasks();}
+    function renderTasks(){const box=document.getElementById('tasks');box.innerHTML='';tasks.forEach((t,i)=>{const div=document.createElement('div');div.className='task';div.innerHTML=`<span>${t}</span><button onclick="doneTask(this)">完成</button>`;box.appendChild(div);});}
+    function doneTask(btn){btn.parentElement.classList.add('done');stars+=1;document.getElementById('starCount').textContent=stars;}
+    function addTask(){const t=prompt('新增任務');if(t){tasks.push(t);renderTasks();}}
+    window.addEventListener('load',()=>{const name=localStorage.getItem('taskIslandName');setDate();if(name){document.getElementById('userName').textContent=name;document.getElementById('login').classList.remove('active');document.getElementById('home').classList.add('active');renderTasks();}});
+  </script>
+</body>
+</html>
