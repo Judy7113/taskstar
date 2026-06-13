@@ -7,35 +7,190 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <main class="login-shell" id="login-screen">
-  <section class="login-card">
-    <div class="login-emoji">🧸🏝️⭐</div>
-    <p class="eyebrow">Welcome</p>
-    <h1>登入任務島</h1>
-    <p class="login-subtitle">填好名字，選一個身份，就可以進入你的小島。</p>
-    <label class="login-label">名字<input id="login-name" type="text" placeholder="例如：Fang" /></label>
-    <label class="login-label">Email / 資訊<input id="login-info" type="text" placeholder="可以填 Email 或暱稱" /></label>
-    <div class="role-picker" id="role-picker">
-      <button type="button" class="role-card active" data-role="學生">🎒<span>學生</span></button>
-      <button type="button" class="role-card" data-role="社團幹部">🌟<span>社團幹部</span></button>
-      <button type="button" class="role-card" data-role="上班族">💼<span>上班族</span></button>
-      <button type="button" class="role-card" data-role="自由安排者">🌈<span>自由安排者</span></button>
+    <!-- 登入頁 -->
+    <div class="auth-screen" id="login-screen">
+      <div class="auth-bg" aria-hidden="true">
+        <span class="auth-cloud ac1"></span><span class="auth-cloud ac2"></span><span class="auth-cloud ac3"></span>
+        <span class="auth-star as1">✦</span><span class="auth-star as2">✧</span><span class="auth-star as3">✦</span>
+      </div>
+      <div class="auth-card">
+        <div class="auth-logo" aria-hidden="true">
+          <svg viewBox="0 0 120 96" width="120" height="96">
+            <ellipse cx="60" cy="86" rx="40" ry="7" fill="#6fb0d8" opacity="0.3"/>
+            <path d="M24 60 Q20 74 34 80 Q60 90 86 80 Q100 74 96 60 Q90 50 60 50 Q30 50 24 60 Z" fill="#c2a87d"/>
+            <path d="M26 54 Q26 66 48 70 Q60 72 72 70 Q94 66 94 54 Q94 44 60 44 Q26 44 26 54 Z" fill="#9fd968"/>
+            <path d="M44 44 L58 28 L72 44 Z" fill="#6f93d4"/>
+            <rect x="50" y="44" width="16" height="12" rx="2" fill="#ecc795"/>
+            <path d="M54 56 v-6 q0 -3 4 -3 q4 0 4 3 v6 Z" fill="#6f9bdd"/>
+            <circle cx="40" cy="34" r="9" fill="#7cc24f"/>
+            <path d="M50 22 l1.6 3.2 3.6 0.4 -2.7 2.4 0.8 3.6 -3.3 -1.8 -3.3 1.8 0.8 -3.6 -2.7 -2.4 3.6 -0.4 Z" fill="#ffd45e"/>
+          </svg>
+        </div>
+        <h1 class="auth-title">任務小島</h1>
+        <p class="auth-tagline">完成任務,養成屬於你的療癒小島</p>
+        <div class="auth-field">
+          <label for="login-name">你的名字</label>
+          <input id="login-name" type="text" placeholder="想讓圓圓怎麼稱呼你?" autocomplete="name" maxlength="16" />
+        </div>
+        <div class="auth-field">
+          <label for="login-email">Email</label>
+          <input id="login-email" type="email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <p class="auth-error" id="login-error"></p>
+        <button class="auth-submit" id="login-submit" type="button">登入</button>
+        <p class="auth-fine">登入即代表開始你的任務島旅程 🌱</p>
+      </div>
     </div>
-    <button class="primary-action login-submit" id="login-submit" type="button">🌈 進入我的小島</button>
-  </section>
-</main>
-<main class="app-shell" id="app-screen" style="display:none;">
+
+    <!-- 歡迎入口頁 -->
+    <div class="welcome-screen" id="welcome-screen" hidden>
+      <div class="auth-bg" aria-hidden="true">
+        <span class="auth-cloud ac1"></span><span class="auth-cloud ac2"></span><span class="auth-cloud ac3"></span>
+      </div>
+      <div class="welcome-inner">
+        <div class="welcome-island" aria-hidden="true">
+          <svg viewBox="0 0 280 220" width="280" height="220">
+            <defs>
+              <radialGradient id="wSun" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff7d8" stop-opacity="0.9"/><stop offset="100%" stop-color="#fff7d8" stop-opacity="0"/></radialGradient>
+              <radialGradient id="wGrass" cx="40%" cy="25%" r="90%"><stop offset="0%" stop-color="#c8ef8e"/><stop offset="100%" stop-color="#7cc24f"/></radialGradient>
+            </defs>
+            <circle cx="222" cy="48" r="46" fill="url(#wSun)"/>
+            <circle cx="222" cy="48" r="15" fill="#ffe9a0"/>
+            <ellipse cx="140" cy="186" rx="92" ry="14" fill="#6fb0d8" opacity="0.28"/>
+            <path d="M60 130 Q52 156 78 168 Q140 188 202 168 Q228 156 220 130 Q210 116 140 116 Q70 116 60 130 Z" fill="#c2a87d"/>
+            <path d="M64 120 Q64 140 100 148 Q140 156 180 148 Q216 140 216 120 Q216 102 140 102 Q64 102 64 120 Z" fill="url(#wGrass)"/>
+            <path d="M104 102 L128 70 L152 102 Z" fill="#6f93d4"/>
+            <rect x="112" y="102" width="32" height="26" rx="3" fill="#ecc795"/>
+            <path d="M120 128 v-12 q0 -5 8 -5 q8 0 8 5 v12 Z" fill="#6f9bdd"/>
+            <circle cx="84" cy="86" r="15" fill="#7cc24f"/><circle cx="74" cy="94" r="9" fill="#7cc24f"/>
+            <g class="welcome-bear"><svg x="150" y="74" viewBox="0 0 120 124" width="58" height="58" aria-hidden="true">
+  <defs>
+    <radialGradient id="bWel-fur" cx="38%" cy="28%" r="88%">
+      <stop offset="0%" stop-color="#fff7e6"/><stop offset="50%" stop-color="#f4dcab"/><stop offset="100%" stop-color="#e3c084"/>
+    </radialGradient>
+    <radialGradient id="bWel-furB" cx="42%" cy="22%" r="92%">
+      <stop offset="0%" stop-color="#fdefce"/><stop offset="100%" stop-color="#e8c98c"/>
+    </radialGradient>
+    <radialGradient id="bWel-muz" cx="45%" cy="32%" r="80%">
+      <stop offset="0%" stop-color="#fffaf2"/><stop offset="100%" stop-color="#f6e4c2"/>
+    </radialGradient>
+    <radialGradient id="bWel-belly" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#fffaf0"/><stop offset="100%" stop-color="#f7e7c8"/>
+    </radialGradient>
+    <linearGradient id="bWel-scarf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff9d86"/><stop offset="100%" stop-color="#f0715c"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="60" cy="116" rx="33" ry="6.5" fill="#7c5c34" opacity="0.16"/>
+
+  <!-- 身體:毛邊陰影層 + 主體 -->
+  <path d="M60.0,55.6 Q62.5,56.6 64.9,57.0 Q67.4,57.4 70.2,56.6 Q72.1,58.9 74.3,60.0 Q76.5,61.1 79.2,61.6 Q80.5,64.0 81.9,66.1 Q84.0,67.5 86.4,68.8 Q86.9,71.5 87.8,73.8 Q89.1,75.9 90.9,78.0 Q90.6,80.6 90.9,83.1 Q91.4,85.5 92.0,88.0 Q91.4,90.5 90.9,92.9 Q90.6,95.4 90.8,98.0 Q89.1,100.1 87.7,102.1 Q86.9,104.5 86.3,107.1 Q84.0,108.5 82.2,110.2 Q80.5,112.0 78.7,113.8 Q76.5,114.9 74.2,115.8 Q72.1,117.1 70.0,118.9 Q67.4,118.6 64.9,118.8 Q62.5,119.4 60.0,119.9 Q57.5,119.4 55.1,118.8 Q52.6,118.6 50.0,118.7 Q47.9,117.1 45.8,115.8 Q43.5,114.9 41.1,114.0 Q39.5,112.0 38.0,110.0 Q36.0,108.5 34.0,106.9 Q33.1,104.5 32.1,102.2 Q30.9,100.1 29.4,97.9 Q29.4,95.4 29.0,92.9 Q28.6,90.5 27.8,88.0 Q28.6,85.5 28.9,83.1 Q29.4,80.6 29.5,78.1 Q30.9,75.9 32.0,73.7 Q33.1,71.5 33.4,68.7 Q36.0,67.5 37.9,65.9 Q39.5,64.0 41.0,61.9 Q43.5,61.1 45.7,59.9 Q47.9,58.9 50.2,57.7 Q52.6,57.4 55.1,56.9 Q57.5,56.6 60.0,55.6 Z" fill="#e3c489" transform="translate(0,1.5)"/>
+  <path d="M60.0,55.6 Q62.5,56.6 64.9,57.0 Q67.4,57.4 70.2,56.6 Q72.1,58.9 74.3,60.0 Q76.5,61.1 79.2,61.6 Q80.5,64.0 81.9,66.1 Q84.0,67.5 86.4,68.8 Q86.9,71.5 87.8,73.8 Q89.1,75.9 90.9,78.0 Q90.6,80.6 90.9,83.1 Q91.4,85.5 92.0,88.0 Q91.4,90.5 90.9,92.9 Q90.6,95.4 90.8,98.0 Q89.1,100.1 87.7,102.1 Q86.9,104.5 86.3,107.1 Q84.0,108.5 82.2,110.2 Q80.5,112.0 78.7,113.8 Q76.5,114.9 74.2,115.8 Q72.1,117.1 70.0,118.9 Q67.4,118.6 64.9,118.8 Q62.5,119.4 60.0,119.9 Q57.5,119.4 55.1,118.8 Q52.6,118.6 50.0,118.7 Q47.9,117.1 45.8,115.8 Q43.5,114.9 41.1,114.0 Q39.5,112.0 38.0,110.0 Q36.0,108.5 34.0,106.9 Q33.1,104.5 32.1,102.2 Q30.9,100.1 29.4,97.9 Q29.4,95.4 29.0,92.9 Q28.6,90.5 27.8,88.0 Q28.6,85.5 28.9,83.1 Q29.4,80.6 29.5,78.1 Q30.9,75.9 32.0,73.7 Q33.1,71.5 33.4,68.7 Q36.0,67.5 37.9,65.9 Q39.5,64.0 41.0,61.9 Q43.5,61.1 45.7,59.9 Q47.9,58.9 50.2,57.7 Q52.6,57.4 55.1,56.9 Q57.5,56.6 60.0,55.6 Z" fill="url(#bWel-furB)"/>
+  <circle cx="62.1" cy="66.8" r="3.3" fill="#f0d9a6" opacity="0.4"/><circle cx="64.3" cy="69.7" r="2.5" fill="#f0d9a6" opacity="0.4"/><circle cx="36.4" cy="90.2" r="2.6" fill="#f0d9a6" opacity="0.4"/><circle cx="82.6" cy="84.1" r="2.4" fill="#f0d9a6" opacity="0.4"/><circle cx="38.3" cy="100.0" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="39.9" cy="103.8" r="3.3" fill="#f0d9a6" opacity="0.4"/><circle cx="80.6" cy="104.8" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="56.3" cy="115.8" r="2.4" fill="#f0d9a6" opacity="0.4"/><circle cx="81.0" cy="95.2" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="42.8" cy="105.3" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="59.6" cy="68.6" r="2.2" fill="#f0d9a6" opacity="0.4"/><circle cx="80.9" cy="91.8" r="2.4" fill="#f0d9a6" opacity="0.4"/>
+  <ellipse cx="60" cy="91" rx="18" ry="15" fill="url(#bWel-belly)"/>
+
+  <!-- 腿 -->
+  <path d="M42.0,96.1 Q44.0,96.6 45.9,96.9 Q47.8,97.4 49.9,97.7 Q51.0,99.0 52.1,100.1 Q53.4,101.1 54.8,102.2 Q54.6,103.7 54.8,105.0 Q54.6,106.3 54.7,107.8 Q53.4,108.9 52.2,109.9 Q51.0,111.0 49.6,112.0 Q47.8,112.6 45.9,113.1 Q44.0,113.4 42.0,113.9 Q40.0,113.4 38.1,113.1 Q36.2,112.6 34.1,112.3 Q33.0,111.0 31.8,110.0 Q30.6,108.9 29.2,107.8 Q29.4,106.3 29.2,105.0 Q29.4,103.7 29.6,102.3 Q30.6,101.1 31.7,100.0 Q33.0,99.0 34.3,97.9 Q36.2,97.4 38.1,96.9 Q40.0,96.6 42.0,96.1 Z" fill="url(#bWel-furB)"/>
+  <path d="M78.0,96.1 Q80.0,96.6 81.9,97.0 Q83.8,97.4 85.8,97.9 Q87.0,99.0 88.3,100.0 Q89.4,101.1 90.7,102.2 Q90.6,103.7 90.5,105.0 Q90.6,106.3 90.5,107.7 Q89.4,108.9 88.1,109.9 Q87.0,111.0 86.0,112.3 Q83.8,112.6 81.9,113.0 Q80.0,113.4 78.0,114.0 Q76.0,113.4 74.1,113.1 Q72.2,112.6 70.3,112.0 Q69.0,111.0 67.7,110.0 Q66.6,108.9 65.6,107.7 Q65.4,106.3 65.2,105.0 Q65.4,103.7 65.6,102.3 Q66.6,101.1 67.6,100.0 Q69.0,99.0 70.3,97.9 Q72.2,97.4 74.1,97.0 Q76.0,96.6 78.0,96.1 Z" fill="url(#bWel-furB)"/>
+  <ellipse cx="40" cy="106" rx="6" ry="4.5" fill="#fdf3da"/>
+  <ellipse cx="80" cy="106" rx="6" ry="4.5" fill="#fdf3da"/>
+
+  <!-- 手 -->
+  <g transform="rotate(15 32 82)"><path d="M32.0,70.0 Q33.3,70.3 34.6,71.0 Q35.9,71.5 37.4,71.8 Q38.1,73.6 38.9,75.1 Q39.7,76.6 40.5,78.2 Q40.5,80.2 40.5,82.0 Q40.5,83.8 40.7,85.9 Q39.7,87.4 39.0,89.0 Q38.1,90.4 37.2,91.8 Q35.9,92.5 34.6,93.1 Q33.3,93.7 32.0,94.5 Q30.7,93.7 29.4,93.1 Q28.1,92.5 26.6,92.2 Q25.9,90.4 25.2,88.8 Q24.3,87.4 23.3,85.9 Q23.5,83.8 23.4,82.0 Q23.5,80.2 23.5,78.2 Q24.3,76.6 25.0,75.0 Q25.9,73.6 26.6,71.8 Q28.1,71.5 29.4,70.8 Q30.7,70.3 32.0,70.0 Z" fill="url(#bWel-furB)"/></g>
+  <g transform="rotate(-15 88 82)"><path d="M88.0,69.6 Q89.3,70.3 90.7,70.7 Q91.9,71.5 93.3,72.0 Q94.1,73.6 94.8,75.2 Q95.7,76.6 96.7,78.1 Q96.5,80.2 96.5,82.0 Q96.5,83.8 96.4,85.7 Q95.7,87.4 95.0,89.0 Q94.1,90.4 93.4,92.2 Q91.9,92.5 90.6,93.0 Q89.3,93.7 88.0,94.5 Q86.7,93.7 85.3,93.2 Q84.1,92.5 82.7,92.1 Q81.9,90.4 81.1,88.9 Q80.3,87.4 79.3,85.9 Q79.5,83.8 79.6,82.0 Q79.5,80.2 79.3,78.1 Q80.3,76.6 81.1,75.1 Q81.9,73.6 82.7,72.0 Q84.1,71.5 85.3,70.7 Q86.7,70.3 88.0,69.6 Z" fill="url(#bWel-furB)"/></g>
+
+  <!-- 星星徽章 -->
+  <path d="M60 85 l2.6 5.2 5.8 0.6 -4.3 3.9 1.2 5.7 -5.3 -2.9 -5.3 2.9 1.2 -5.7 -4.3 -3.9 5.8 -0.6 Z" fill="#ffd45e" stroke="#e8a93a" stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- 耳朵 -->
+  <path d="M38.0,9.6 Q39.9,10.3 41.6,10.8 Q43.4,11.4 45.4,11.8 Q46.4,13.6 47.6,15.0 Q48.6,16.6 50.0,18.1 Q49.7,20.1 49.9,22.0 Q49.7,23.9 49.5,25.7 Q48.6,27.4 47.4,28.8 Q46.4,30.4 45.2,31.8 Q43.4,32.6 41.6,33.1 Q39.9,33.7 38.0,34.7 Q36.1,33.7 34.4,33.1 Q32.6,32.6 30.8,31.9 Q29.6,30.4 28.4,29.0 Q27.4,27.4 26.0,25.9 Q26.3,23.9 26.1,22.0 Q26.3,20.1 26.3,18.2 Q27.4,16.6 28.5,15.1 Q29.6,13.6 30.6,11.9 Q32.6,11.4 34.4,10.9 Q36.1,10.3 38.0,9.6 Z" fill="#e3c489" transform="translate(0,1)"/>
+  <path d="M38.0,9.6 Q39.9,10.3 41.6,10.8 Q43.4,11.4 45.4,11.8 Q46.4,13.6 47.6,15.0 Q48.6,16.6 50.0,18.1 Q49.7,20.1 49.9,22.0 Q49.7,23.9 49.5,25.7 Q48.6,27.4 47.4,28.8 Q46.4,30.4 45.2,31.8 Q43.4,32.6 41.6,33.1 Q39.9,33.7 38.0,34.7 Q36.1,33.7 34.4,33.1 Q32.6,32.6 30.8,31.9 Q29.6,30.4 28.4,29.0 Q27.4,27.4 26.0,25.9 Q26.3,23.9 26.1,22.0 Q26.3,20.1 26.3,18.2 Q27.4,16.6 28.5,15.1 Q29.6,13.6 30.6,11.9 Q32.6,11.4 34.4,10.9 Q36.1,10.3 38.0,9.6 Z" fill="url(#bWel-fur)"/>
+  <path d="M82.0,9.7 Q83.9,10.3 85.7,10.7 Q87.4,11.4 89.4,11.8 Q90.4,13.6 91.4,15.2 Q92.6,16.6 94.0,18.1 Q93.7,20.1 93.8,22.0 Q93.7,23.9 93.9,25.9 Q92.6,27.4 91.5,28.9 Q90.4,30.4 89.2,31.9 Q87.4,32.6 85.6,33.2 Q83.9,33.7 82.0,34.5 Q80.1,33.7 78.3,33.3 Q76.6,32.6 74.6,32.2 Q73.6,30.4 72.3,29.0 Q71.4,27.4 70.0,25.9 Q70.3,23.9 70.1,22.0 Q70.3,20.1 69.9,18.1 Q71.4,16.6 72.4,15.0 Q73.6,13.6 74.7,12.0 Q76.6,11.4 78.4,10.9 Q80.1,10.3 82.0,9.7 Z" fill="#e3c489" transform="translate(0,1)"/>
+  <path d="M82.0,9.7 Q83.9,10.3 85.7,10.7 Q87.4,11.4 89.4,11.8 Q90.4,13.6 91.4,15.2 Q92.6,16.6 94.0,18.1 Q93.7,20.1 93.8,22.0 Q93.7,23.9 93.9,25.9 Q92.6,27.4 91.5,28.9 Q90.4,30.4 89.2,31.9 Q87.4,32.6 85.6,33.2 Q83.9,33.7 82.0,34.5 Q80.1,33.7 78.3,33.3 Q76.6,32.6 74.6,32.2 Q73.6,30.4 72.3,29.0 Q71.4,27.4 70.0,25.9 Q70.3,23.9 70.1,22.0 Q70.3,20.1 69.9,18.1 Q71.4,16.6 72.4,15.0 Q73.6,13.6 74.7,12.0 Q76.6,11.4 78.4,10.9 Q80.1,10.3 82.0,9.7 Z" fill="url(#bWel-fur)"/>
+  <circle cx="38" cy="23" r="5" fill="#f0cf98"/>
+  <circle cx="82" cy="23" r="5" fill="#f0cf98"/>
+
+  <!-- 頭:毛邊陰影 + 主體 -->
+  <path d="M60.0,9.9 Q61.9,10.6 63.8,11.2 Q65.8,11.1 68.1,10.3 Q69.5,12.2 71.3,13.1 Q73.1,13.6 75.2,14.0 Q76.4,15.6 77.7,17.1 Q79.4,18.0 81.9,18.3 Q82.1,20.7 82.9,22.4 Q84.3,23.7 86.1,25.0 Q86.1,27.1 86.7,28.9 Q87.4,30.6 89.0,32.2 Q88.2,34.3 88.0,36.2 Q88.5,38.0 89.5,39.9 Q88.2,41.7 87.9,43.6 Q87.4,45.4 87.9,47.5 Q86.1,48.9 85.1,50.5 Q84.3,52.3 84.0,54.3 Q82.1,55.3 80.6,56.6 Q79.4,58.0 78.8,60.2 Q76.4,60.4 74.8,61.4 Q73.1,62.4 71.8,64.1 Q69.5,63.8 67.6,64.2 Q65.8,64.9 64.0,66.3 Q61.9,65.4 60.0,65.5 Q58.1,65.4 56.0,65.8 Q54.2,64.9 52.4,64.3 Q50.5,63.8 48.4,63.7 Q46.9,62.4 45.4,61.2 Q43.6,60.4 41.2,60.2 Q40.6,58.0 39.5,56.4 Q37.9,55.3 35.9,54.4 Q35.7,52.3 34.6,50.7 Q33.9,48.9 32.9,47.3 Q32.6,45.4 32.3,43.5 Q31.8,41.7 30.7,39.9 Q31.5,38.0 31.6,36.1 Q31.8,34.3 30.9,32.2 Q32.6,30.6 33.4,28.9 Q33.9,27.1 33.5,24.8 Q35.7,23.7 36.7,22.2 Q37.9,20.7 38.8,19.0 Q40.6,18.0 42.2,17.0 Q43.6,15.6 45.0,14.2 Q46.9,13.6 48.8,13.2 Q50.5,12.2 52.1,10.8 Q54.2,11.1 56.1,10.7 Q58.1,10.6 60.0,9.9 Z" fill="#e3c489" transform="translate(0,1.5)"/>
+  <path d="M60.0,9.9 Q61.9,10.6 63.8,11.2 Q65.8,11.1 68.1,10.3 Q69.5,12.2 71.3,13.1 Q73.1,13.6 75.2,14.0 Q76.4,15.6 77.7,17.1 Q79.4,18.0 81.9,18.3 Q82.1,20.7 82.9,22.4 Q84.3,23.7 86.1,25.0 Q86.1,27.1 86.7,28.9 Q87.4,30.6 89.0,32.2 Q88.2,34.3 88.0,36.2 Q88.5,38.0 89.5,39.9 Q88.2,41.7 87.9,43.6 Q87.4,45.4 87.9,47.5 Q86.1,48.9 85.1,50.5 Q84.3,52.3 84.0,54.3 Q82.1,55.3 80.6,56.6 Q79.4,58.0 78.8,60.2 Q76.4,60.4 74.8,61.4 Q73.1,62.4 71.8,64.1 Q69.5,63.8 67.6,64.2 Q65.8,64.9 64.0,66.3 Q61.9,65.4 60.0,65.5 Q58.1,65.4 56.0,65.8 Q54.2,64.9 52.4,64.3 Q50.5,63.8 48.4,63.7 Q46.9,62.4 45.4,61.2 Q43.6,60.4 41.2,60.2 Q40.6,58.0 39.5,56.4 Q37.9,55.3 35.9,54.4 Q35.7,52.3 34.6,50.7 Q33.9,48.9 32.9,47.3 Q32.6,45.4 32.3,43.5 Q31.8,41.7 30.7,39.9 Q31.5,38.0 31.6,36.1 Q31.8,34.3 30.9,32.2 Q32.6,30.6 33.4,28.9 Q33.9,27.1 33.5,24.8 Q35.7,23.7 36.7,22.2 Q37.9,20.7 38.8,19.0 Q40.6,18.0 42.2,17.0 Q43.6,15.6 45.0,14.2 Q46.9,13.6 48.8,13.2 Q50.5,12.2 52.1,10.8 Q54.2,11.1 56.1,10.7 Q58.1,10.6 60.0,9.9 Z" fill="url(#bWel-fur)"/>
+  <circle cx="46.9" cy="19.6" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="83.8" cy="43.5" r="3.4" fill="#f0d9a6" opacity="0.4"/><circle cx="74.3" cy="22.8" r="2.8" fill="#f0d9a6" opacity="0.4"/><circle cx="75.9" cy="23.0" r="2.8" fill="#f0d9a6" opacity="0.4"/><circle cx="72.4" cy="21.8" r="3.0" fill="#f0d9a6" opacity="0.4"/><circle cx="79.7" cy="37.1" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="38.0" cy="32.5" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="35.5" cy="38.5" r="2.2" fill="#f0d9a6" opacity="0.4"/><circle cx="61.2" cy="58.9" r="2.5" fill="#f0d9a6" opacity="0.4"/><circle cx="63.5" cy="18.4" r="3.2" fill="#f0d9a6" opacity="0.4"/>
+  <!-- 頭頂呆毛 -->
+  <path d="M57 13 q3 -8 5 -1 q3 -6 3 1" stroke="#e3c084" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <!-- 絨毛紋理 -->
+  <path d="M39 42 q-2.5 3 -0.5 6 M81 42 q2.5 3 0.5 6 M45 26 q-2.5 2 -1.5 5 M75 26 q2.5 2 1.5 5" stroke="#ecd4a2" stroke-width="1.3" fill="none" opacity="0.55"/>
+
+  <!-- 圍巾 -->
+  <path d="M38 55 q22 12 44 0 l-2 9 q-20 10 -40 0 Z" fill="url(#bWel-scarf)"/>
+  <path d="M70 61 l6 16 q1 4 -3 5 l-5 1 q-3 0.5 -3 -3 l1 -17 Z" fill="url(#bWel-scarf)"/>
+  <path d="M68 79 h8 M69 83 h7" stroke="#d85a46" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- 臉 -->
+  <ellipse cx="60" cy="45" rx="13" ry="10" fill="url(#bWel-muz)"/>
+  <path d="M56 42 q4 -3.4 8 0 q-1 3.6 -4 3.6 q-3 0 -4 -3.6 Z" fill="#8a5c3a"/>
+  <path d="M60 46 v3 M60 49 q-3 3 -6 1 M60 49 q3 3 6 1" stroke="#8a5c3a" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+  <circle cx="48" cy="36" r="3.1" fill="#4a3424"/>
+  <circle cx="72" cy="36" r="3.1" fill="#4a3424"/>
+  <circle cx="49.2" cy="34.8" r="1.1" fill="#fff"/>
+  <circle cx="73.2" cy="34.8" r="1.1" fill="#fff"/>
+  <ellipse cx="42" cy="44" rx="4.6" ry="2.9" fill="#ffb9a0" opacity="0.7"/>
+  <ellipse cx="78" cy="44" rx="4.6" ry="2.9" fill="#ffb9a0" opacity="0.7"/>
+</svg></g>
+          </svg>
+        </div>
+        <h1 class="welcome-title">你的任務小島準備好了</h1>
+        <p class="welcome-sub" id="welcome-greeting">圓圓已經在島上等你囉</p>
+        <button class="welcome-enter" id="welcome-enter" type="button">🌈 進入我的小島</button>
+      </div>
+    </div>
+
+    <main class="app-shell" id="app-shell" hidden>
       <section class="phone-frame" aria-label="Task Island prototype">
         <header class="topbar">
-          <button class="icon-btn" type="button" aria-label="開啟選單" title="開啟選單">
+          <button class="icon-btn" id="menu-btn" type="button" aria-label="開啟選單" title="開啟選單">
             <span></span><span></span><span></span>
           </button>
           <div>
-            <p class="date-pill" id="today-date">今天</p>
+            <p class="date-pill" id="today-date">—</p>
             <h1>任務島 Task Island</h1>
           </div>
           <button class="avatar-btn" type="button" aria-label="個人檔案">F</button>
         </header>
+
+        <!-- 側邊功能選單 -->
+        <div class="drawer-overlay" id="drawer-overlay" hidden></div>
+        <aside class="side-drawer" id="side-drawer" aria-hidden="true" aria-label="功能選單">
+          <div class="drawer-head">
+            <div class="drawer-profile">
+              <span class="drawer-avatar" id="drawer-avatar">F</span>
+              <div>
+                <strong id="drawer-name">訪客</strong>
+                <span id="drawer-email" class="drawer-email">—</span>
+              </div>
+            </div>
+            <button class="drawer-close" id="drawer-close" type="button" aria-label="關閉選單">✕</button>
+          </div>
+          <nav class="drawer-menu">
+            <button class="drawer-item" data-menu="profile" type="button"><span class="dm-ico">👤</span><span class="dm-label"><span data-player-name>Fang</span> 的個人資料</span><span class="dm-arrow">›</span></button>
+            <button class="drawer-item" data-menu="addfriend" type="button"><span class="dm-ico">🤝</span><span class="dm-label">添加好友名單</span><span class="dm-arrow">›</span></button>
+            <button class="drawer-item" data-menu="calendar" type="button"><span class="dm-ico">📅</span><span class="dm-label">任務日曆</span><span class="dm-arrow">›</span></button>
+            <button class="drawer-item" data-menu="achievements" type="button"><span class="dm-ico">🏅</span><span class="dm-label">成就徽章</span><span class="dm-arrow">›</span></button>
+            <button class="drawer-item" data-menu="focuslog" type="button"><span class="dm-ico">⏱️</span><span class="dm-label">專注紀錄</span><span class="dm-arrow">›</span></button>
+            <button class="drawer-item" data-menu="settings" type="button"><span class="dm-ico">⚙️</span><span class="dm-label">設定</span><span class="dm-arrow">›</span></button>
+            <button class="drawer-item" data-menu="about" type="button"><span class="dm-ico">🌈</span><span class="dm-label">關於 Task Island</span><span class="dm-arrow">›</span></button>
+          </nav>
+          <p class="drawer-foot">任務島 Task Island · v1.0<br>完成任務,養成屬於你的療癒小島 🌱</p>
+        </aside>
+
+        <!-- 選單內容彈窗 -->
+        <div class="sheet-overlay" id="sheet-overlay" hidden>
+          <div class="sheet-panel" id="sheet-panel" role="dialog" aria-modal="true">
+            <div class="sheet-head">
+              <h2 id="sheet-title">標題</h2>
+              <button class="sheet-close" id="sheet-close" type="button" aria-label="關閉">✕</button>
+            </div>
+            <div class="sheet-body" id="sheet-body"></div>
+          </div>
+        </div>
 
         <nav class="mode-tabs" aria-label="主要頁籤">
           <button class="tab active" data-view="home" type="button">首頁</button>
@@ -55,81 +210,1178 @@
               <div class="island-topline">
                 <div>
                   <p class="eyebrow">My Island</p>
-                  <h2><span class="player-name">Fang</span> 的小島</h2>
+                  <h2><span data-player-name>Fang</span> 的小島</h2>
                 </div>
                 <div class="resource-pills">
                   <div class="energy-pill">XP <span id="energy">0</span></div>
-                  <div class="energy-pill star-pill"><span>⭐</span> <span id="stars">0</span></div>
+                  <div class="energy-pill star-pill"><img src="./assets/star-gem.png" alt="" /> <span id="stars">0</span></div>
                   <div class="energy-pill black-pill">黑星 <span id="black-stars">0</span></div>
                 </div>
               </div>
 
               <div class="island-scene v2" id="island-scene">
                 <div class="sky-layer" aria-hidden="true">
-                  <span class="sun">🌞</span>
-                  <span class="rainbow">🌈</span>
-                  <span class="cloud cloud-a">☁️</span>
-                  <span class="cloud cloud-b">☁️</span>
-                  <span class="cloud cloud-c">☁️</span>
+                  <span class="sun"></span>
+                  <span class="rainbow"></span>
+                  <span class="cloud cloud-a"></span>
+                  <span class="cloud cloud-b"></span>
+                  <span class="cloud cloud-c"></span>
+                  <span class="rain-drop r1"></span>
+                  <span class="rain-drop r2"></span>
+                  <span class="rain-drop r3"></span>
+                  <span class="rain-drop r4"></span>
+                  <span class="rain-drop r5"></span>
+                  <span class="rain-drop r6"></span>
                 </div>
-                <div class="emoji-island">
-                  <div class="water">💧 〰️ 💧</div>
-                  <div class="island-land">
-                    <span class="tree-e">🌳</span>
-                    <span class="house-e">🏡</span>
-                    <span class="flower-e">🌷</span>
-                    <span class="bear-e" id="mini-buddy">🧸</span>
-                    <span class="lamp-e">💡</span>
-                  </div>
+                <svg class="island-svg v3" viewBox="0 0 560 430" role="img" aria-label="3D 療癒小島" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="iSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#cdedfc"/><stop offset="62%" stop-color="#aee0f8"/><stop offset="100%" stop-color="#9bd6f3"/>
+    </linearGradient>
+    <radialGradient id="iSun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff7d8" stop-opacity="0.95"/><stop offset="45%" stop-color="#ffeeb0" stop-opacity="0.5"/><stop offset="100%" stop-color="#ffeeb0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="iWater" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8ed7f2"/><stop offset="100%" stop-color="#5fb8e6"/>
+    </linearGradient>
+    <linearGradient id="iRock" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcc9a4"/><stop offset="55%" stop-color="#c2a87d"/><stop offset="100%" stop-color="#9d8159"/>
+    </linearGradient>
+    <radialGradient id="iGrass" cx="40%" cy="22%" r="90%">
+      <stop offset="0%" stop-color="#c8ef8e"/><stop offset="55%" stop-color="#9fd968"/><stop offset="100%" stop-color="#7cc24f"/>
+    </radialGradient>
+    <radialGradient id="iLeaf" cx="35%" cy="25%" r="85%">
+      <stop offset="0%" stop-color="#b8e878"/><stop offset="60%" stop-color="#7cc24f"/><stop offset="100%" stop-color="#549b38"/>
+    </radialGradient>
+    <radialGradient id="iLeafPink" cx="35%" cy="25%" r="85%">
+      <stop offset="0%" stop-color="#ffe1ef"/><stop offset="60%" stop-color="#ffb3d3"/><stop offset="100%" stop-color="#e886b0"/>
+    </radialGradient>
+    <linearGradient id="iTrunk" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b98a5c"/><stop offset="50%" stop-color="#9a6b42"/><stop offset="100%" stop-color="#7c5430"/>
+    </linearGradient>
+    <linearGradient id="iWood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e3b27c"/><stop offset="100%" stop-color="#c08e57"/>
+    </linearGradient>
+    <linearGradient id="iWoodDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b98a5c"/><stop offset="100%" stop-color="#92653c"/>
+    </linearGradient>
+    <linearGradient id="iRoof" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8fb4ee"/><stop offset="100%" stop-color="#5d83c8"/>
+    </linearGradient>
+    <linearGradient id="iWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f2d4a4"/><stop offset="100%" stop-color="#dcb279"/>
+    </linearGradient>
+    <radialGradient id="iLampGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffeeb6" stop-opacity="0.95"/><stop offset="100%" stop-color="#ffeeb6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="iPondR" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#cdeffb"/><stop offset="100%" stop-color="#8fd4f0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 天空與柔和陽光 -->
+  <rect width="560" height="430" rx="22" fill="url(#iSky)"/>
+  <circle cx="468" cy="64" r="86" fill="url(#iSun)"/>
+  <circle cx="468" cy="64" r="26" fill="#fff3c2"/>
+  <circle cx="468" cy="64" r="20" fill="#ffe9a0"/>
+
+  <!-- 軟綿綿 3D 白雲 -->
+  <g class="cloud3d c1">
+    <ellipse cx="96" cy="74" rx="34" ry="18" fill="#eef7fd"/>
+    <circle cx="76" cy="68" r="16" fill="#ffffff"/><circle cx="100" cy="60" r="20" fill="#ffffff"/><circle cx="122" cy="70" r="14" fill="#ffffff"/>
+  </g>
+  <g class="cloud3d c2">
+    <ellipse cx="318" cy="48" rx="28" ry="14" fill="#eef7fd"/>
+    <circle cx="304" cy="42" r="13" fill="#ffffff"/><circle cx="324" cy="36" r="16" fill="#ffffff"/><circle cx="340" cy="44" r="11" fill="#ffffff"/>
+  </g>
+  <g class="cloud3d c3">
+    <ellipse cx="508" cy="148" rx="24" ry="12" fill="#eef7fd"/>
+    <circle cx="496" cy="142" r="11" fill="#ffffff"/><circle cx="514" cy="138" r="13" fill="#ffffff"/>
+  </g>
+
+  <!-- 海水 -->
+  <path d="M0 332 Q140 318 280 330 Q420 342 560 326 L560 430 Q560 430 538 430 L22 430 Q0 430 0 430 Z" fill="url(#iWater)"/>
+  <ellipse cx="280" cy="352" rx="225" ry="40" fill="#bdeafb" opacity="0.4"/>
+  <path class="ripple rp1" d="M96 358 q24 -7 48 0" fill="none" stroke="#ffffff" stroke-opacity="0.65" stroke-width="3" stroke-linecap="round"/>
+  <path class="ripple rp2" d="M404 386 q22 -6 44 0" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round"/>
+  <path class="ripple rp3" d="M180 398 q20 -5 40 0" fill="none" stroke="#ffffff" stroke-opacity="0.5" stroke-width="2.5" stroke-linecap="round"/>
+
+  <g class="island-core" id="island-core">
+    <!-- 岩石底座 -->
+    <path d="M120 268 Q104 300 128 322 Q156 346 220 352 Q280 358 340 352 Q412 344 432 318 Q450 294 432 268 Q420 252 396 246 L160 246 Q134 252 120 268 Z" fill="url(#iRock)"/>
+    <path d="M138 286 q-8 16 6 28 M196 330 q22 9 50 9 M372 332 q26 -6 40 -22" fill="none" stroke="#8a6f4b" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="168" cy="300" rx="13" ry="9" fill="#e7d6b2" opacity="0.7"/>
+    <ellipse cx="402" cy="296" rx="11" ry="8" fill="#e7d6b2" opacity="0.6"/>
+    <ellipse cx="280" cy="368" rx="170" ry="18" fill="#3f86ad" opacity="0.25"/>
+
+    <!-- 草地厚邊(3D 厚度) -->
+    <path d="M118 240 Q118 270 178 282 Q280 300 382 282 Q442 270 442 240 Q442 212 382 200 Q280 184 178 200 Q118 212 118 240 Z" fill="#69ab44"/>
+    <!-- 草地頂面 -->
+    <path d="M122 234 Q122 262 180 274 Q280 292 380 274 Q438 262 438 234 Q438 208 380 196 Q280 180 180 196 Q122 208 122 234 Z" fill="url(#iGrass)"/>
+    <ellipse cx="240" cy="222" rx="86" ry="26" fill="#d2f29c" opacity="0.5"/>
+    <!-- 垂落的小草叢 -->
+    <ellipse cx="136" cy="252" rx="14" ry="8" fill="#7cc24f"/>
+    <ellipse cx="430" cy="246" rx="12" ry="7" fill="#7cc24f"/>
+    <ellipse cx="318" cy="288" rx="16" ry="7" fill="#8ccf5d"/>
+
+    <!-- ===== Lv.1 小木牌 ===== -->
+    <g class="grow" data-prop="sign" data-lv="1">
+      <ellipse cx="172" cy="276" rx="14" ry="4.5" fill="#4f8a30" opacity="0.4"/>
+      <rect x="169" y="248" width="6" height="28" rx="3" fill="url(#iWoodDark)"/>
+      <rect x="150" y="234" width="44" height="22" rx="7" fill="url(#iWood)" stroke="#9a6b42" stroke-width="2.4"/>
+      <rect x="150" y="234" width="44" height="6" rx="3" fill="#f0c894" opacity="0.8"/>
+      <path d="M158 243 h28 M158 249 h20" stroke="#9a6b42" stroke-width="2.4" stroke-linecap="round"/>
+    </g>
+
+    <!-- ===== Lv.1 小花 ===== -->
+    <g class="grow" data-prop="wildflower" data-lv="1">
+      <g transform="translate(214,266)"><circle r="3.6" fill="#ff9ec6"/><circle r="1.5" fill="#fff3c2"/><circle cx="7" cy="3" r="2.8" fill="#fff"/><circle cx="7" cy="3" r="1.1" fill="#ffd45e"/></g>
+      <g transform="translate(330,262)"><circle r="3.4" fill="#ffd45e"/><circle r="1.4" fill="#ff8a65"/><circle cx="-7" cy="3" r="2.6" fill="#c5a8ff"/><circle cx="-7" cy="3" r="1" fill="#fff"/></g>
+      <g transform="translate(388,238)"><circle r="3" fill="#fff"/><circle r="1.2" fill="#ffd45e"/></g>
+      <g transform="translate(154,222)"><circle r="3" fill="#ffb3d3"/><circle r="1.2" fill="#fff"/></g>
+    </g>
+
+    <!-- ===== Lv.2 石板小路 ===== -->
+    <g class="grow" data-prop="path" data-lv="2">
+      <ellipse cx="268" cy="282" rx="13" ry="6" fill="#d8dee0"/><ellipse cx="268" cy="280.5" rx="13" ry="5" fill="#eef2f3"/>
+      <ellipse cx="278" cy="268" rx="11" ry="5.5" fill="#d8dee0"/><ellipse cx="278" cy="266.8" rx="11" ry="4.5" fill="#eef2f3"/>
+      <ellipse cx="285" cy="254" rx="10" ry="5" fill="#d8dee0"/><ellipse cx="285" cy="253" rx="10" ry="4" fill="#eef2f3"/>
+      <ellipse cx="290" cy="241" rx="9" ry="4.5" fill="#d8dee0"/><ellipse cx="290" cy="240" rx="9" ry="3.6" fill="#eef2f3"/>
+    </g>
+
+    <!-- ===== Lv.2 小樹 ===== -->
+    <g class="grow" data-prop="tree" data-lv="2">
+      <ellipse cx="186" cy="212" rx="26" ry="8" fill="#4f8a30" opacity="0.35"/>
+      <path d="M182 212 q-3 -26 -6 -38 q10 -6 14 0 q-3 12 -2 38 Z" fill="url(#iTrunk)"/>
+      <path d="M184 188 q-10 -8 -16 -14" stroke="#8a5c36" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <circle cx="184" cy="146" r="30" fill="url(#iLeaf)"/>
+      <circle cx="160" cy="164" r="20" fill="url(#iLeaf)"/>
+      <circle cx="210" cy="162" r="21" fill="url(#iLeaf)"/>
+      <circle cx="172" cy="138" r="7" fill="#d2f29c" opacity="0.85"/>
+      <circle cx="196" cy="132" r="5" fill="#d2f29c" opacity="0.7"/>
+      <circle cx="170" cy="158" r="3.2" fill="#ff8a80"/>
+      <circle cx="198" cy="152" r="3.2" fill="#ff8a80"/>
+    </g>
+
+    <!-- ===== Lv.2 小燈 ===== -->
+    <g class="grow" data-prop="lamp" data-lv="2">
+      <ellipse cx="372" cy="256" rx="9" ry="3.5" fill="#4f8a30" opacity="0.4"/>
+      <rect x="369" y="226" width="6" height="30" rx="3" fill="url(#iWoodDark)"/>
+      <circle class="lamp-glow" cx="372" cy="216" r="19" fill="url(#iLampGlow)"/>
+      <rect x="364" y="209" width="16" height="15" rx="5" fill="#ffe9a8" stroke="#caa353" stroke-width="2.4"/>
+      <path d="M362 209 h20 l-3 -6 h-14 Z" fill="#9a6b42"/>
+      <circle cx="372" cy="216" r="3.4" fill="#fff7d8"/>
+    </g>
+
+    <!-- ===== Lv.3 溫馨小木屋 ===== -->
+    <g class="grow" data-prop="house" data-lv="3">
+      <ellipse cx="300" cy="228" rx="58" ry="12" fill="#4f8a30" opacity="0.35"/>
+      <!-- 側翼 -->
+      <rect x="316" y="174" width="40" height="52" rx="4" fill="url(#iWall)"/>
+      <path d="M316 180 h40 M316 194 h40 M316 208 h40" stroke="#caa05f" stroke-width="1.6" opacity="0.7"/>
+      <path d="M310 178 L336 152 L362 178 Z" fill="url(#iRoof)"/>
+      <path d="M310 178 L336 152 L362 178" fill="none" stroke="#4d6fb0" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="328" y="188" width="18" height="15" rx="3" fill="#cdeffb" stroke="#9a6b42" stroke-width="2.4"/>
+      <line x1="337" y1="188" x2="337" y2="203" stroke="#9a6b42" stroke-width="1.8"/>
+      <rect x="324" y="203" width="26" height="6" rx="3" fill="url(#iWoodDark)"/>
+      <g transform="translate(328,201)"><circle r="2.6" fill="#ff9ec6"/><circle cx="6.5" r="2.6" fill="#ffd45e"/><circle cx="13" r="2.6" fill="#ff8a80"/><circle cx="19.5" r="2.6" fill="#c5a8ff"/></g>
+      <!-- 主屋 -->
+      <rect x="244" y="166" width="62" height="62" rx="5" fill="url(#iWall)"/>
+      <path d="M244 174 h62 M244 188 h62 M244 216 h62" stroke="#caa05f" stroke-width="1.6" opacity="0.7"/>
+      <path d="M236 170 L275 132 L314 170 Z" fill="url(#iRoof)"/>
+      <path d="M236 170 L275 132 L314 170" fill="none" stroke="#4d6fb0" stroke-width="3.4" stroke-linejoin="round"/>
+      <path d="M242 168 h66" stroke="#7da0dc" stroke-width="5" stroke-linecap="round"/>
+      <rect x="291" y="134" width="11" height="20" rx="2.5" fill="#d9b288"/>
+      <rect x="289" y="131" width="15" height="6" rx="3" fill="#c29469"/>
+      <path class="chimney-smoke" d="M297 128 q-5 -8 1 -14 q6 -6 1 -12" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" opacity="0.85"/>
+      <!-- 圓窗 -->
+      <circle cx="275" cy="156" r="8" fill="#cdeffb" stroke="#9a6b42" stroke-width="2.6"/>
+      <path d="M267 156 h16 M275 148 v16" stroke="#9a6b42" stroke-width="1.8"/>
+      <!-- 拱門 -->
+      <path d="M262 228 v-26 q0 -12 13 -12 q13 0 13 12 v26 Z" fill="#6f9bdd" stroke="#4d6fb0" stroke-width="2.6"/>
+      <circle cx="283" cy="208" r="1.8" fill="#fff3c2"/>
+      <path d="M258 228 v-27 q0 -16 17 -16 q17 0 17 16 v27" fill="none" stroke="#f5e3c2" stroke-width="3.4"/>
+      <!-- 窗+花箱 -->
+      <rect x="248" y="192" width="9" height="11" rx="2" fill="#cdeffb" stroke="#9a6b42" stroke-width="2"/>
+      <rect x="245" y="203" width="15" height="5" rx="2.5" fill="url(#iWoodDark)"/>
+      <circle cx="249" cy="202" r="2.2" fill="#ff9ec6"/><circle cx="255" cy="202" r="2.2" fill="#ffd45e"/>
+    </g>
+
+    <!-- ===== Lv.4 木頭平台 ===== -->
+    <g class="grow" data-prop="deck" data-lv="4">
+      <path d="M348 258 L432 258 Q442 258 442 266 L442 282 Q442 290 432 290 L348 290 Z" fill="url(#iWood)" stroke="#9a6b42" stroke-width="2.4"/>
+      <path d="M362 258 v32 M378 258 v32 M394 258 v32 M410 258 v32 M426 258 v32" stroke="#a87a4c" stroke-width="2"/>
+      <path d="M348 258 h94" stroke="#f0c894" stroke-width="3" stroke-linecap="round"/>
+      <rect x="352" y="288" width="7" height="14" rx="3" fill="url(#iWoodDark)"/>
+      <rect x="428" y="288" width="7" height="14" rx="3" fill="url(#iWoodDark)"/>
+    </g>
+  </g>
+
+  <!-- ===== Lv.4 小碼頭(伸出島外的水上部分) ===== -->
+  <g class="grow" data-prop="dock" data-lv="4">
+    <path d="M440 268 L516 286 Q524 288 522 296 L518 308 Q516 314 508 312 L436 296 Z" fill="url(#iWood)" stroke="#9a6b42" stroke-width="2.4"/>
+    <path d="M456 272 l-4 22 M474 276 l-4 22 M492 280 l-4 22" stroke="#a87a4c" stroke-width="2"/>
+    <rect x="444" y="294" width="7" height="22" rx="3.5" fill="url(#iWoodDark)"/>
+    <rect x="506" y="308" width="7" height="20" rx="3.5" fill="url(#iWoodDark)"/>
+    <circle cx="447" cy="292" r="5" fill="#c08e57" stroke="#9a6b42" stroke-width="2"/>
+    <circle cx="509" cy="306" r="5" fill="#c08e57" stroke="#9a6b42" stroke-width="2"/>
+    <ellipse cx="448" cy="318" rx="10" ry="3" fill="#fff" opacity="0.55"/>
+    <ellipse cx="510" cy="330" rx="10" ry="3" fill="#fff" opacity="0.5"/>
+  </g>
+
+  <!-- ===== Lv.4 小船 ===== -->
+  <g class="grow boat" data-prop="boat" data-lv="4">
+    <path d="M448 344 q6 -8 14 -8 l44 0 q8 0 14 8 q-4 24 -36 24 q-32 0 -36 -24 Z" fill="url(#iWoodDark)"/>
+    <path d="M454 344 q4 -5 10 -5 l40 0 q6 0 10 5 q-4 18 -30 18 q-26 0 -30 -18 Z" fill="url(#iWood)"/>
+    <path d="M456 348 h56 M460 356 h48" stroke="#9a6b42" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+    <rect x="468" y="350" width="32" height="5" rx="2.5" fill="#e3b27c" stroke="#9a6b42" stroke-width="1.6"/>
+    <path d="M484 344 v-14" stroke="#9a6b42" stroke-width="2.6" stroke-linecap="round"/>
+    <circle cx="484" cy="328" r="3" fill="#fff" stroke="#caa05f" stroke-width="1.6"/>
+    <path d="M452 346 Q444 332 447 318" stroke="#caa05f" stroke-width="2" fill="none" stroke-dasharray="3 4"/>
+    <ellipse cx="484" cy="372" rx="38" ry="4.5" fill="#fff" opacity="0.4"/>
+  </g>
+
+  <g class="island-core-extra">
+    <!-- ===== Lv.5 朋友送的小禮物 ===== -->
+    <g class="grow" data-prop="gift" data-lv="5">
+      <ellipse cx="206" cy="284" rx="11" ry="3.5" fill="#4f8a30" opacity="0.4"/>
+      <rect x="196" y="266" width="22" height="17" rx="4" fill="#ffc1d6" stroke="#e886b0" stroke-width="2"/>
+      <rect x="196" y="266" width="22" height="5" rx="2.5" fill="#ffd7e4"/>
+      <rect x="205" y="266" width="5" height="17" fill="#ff7fa6"/>
+      <path d="M207 264 q-7 -8 -2 -10 q4 -1 3 10 q1 -11 5 -10 q5 2 -2 10 Z" fill="#ff7fa6"/>
+    </g>
+
+    <!-- ===== Lv.5 星星燈串 ===== -->
+    <g class="grow" data-prop="starlights" data-lv="5">
+      <path d="M246 176 Q275 190 304 176" fill="none" stroke="#caa353" stroke-width="1.8"/>
+      <g class="fairy f1"><path d="M256 182 l1.8 3.6 4 0.4 -3 2.7 0.9 4 -3.7 -2 -3.7 2 0.9 -4 -3 -2.7 4 -0.4 Z" fill="#ffd45e"/><circle cx="256" cy="186" r="6" fill="#ffd45e" opacity="0.35"/></g>
+      <g class="fairy f2"><path d="M273 186 l1.8 3.6 4 0.4 -3 2.7 0.9 4 -3.7 -2 -3.7 2 0.9 -4 -3 -2.7 4 -0.4 Z" fill="#ffb3d3"/><circle cx="273" cy="190" r="6" fill="#ffb3d3" opacity="0.35"/></g>
+      <g class="fairy f3"><path d="M290 182 l1.8 3.6 4 0.4 -3 2.7 0.9 4 -3.7 -2 -3.7 2 0.9 -4 -3 -2.7 4 -0.4 Z" fill="#9fd8ff"/><circle cx="290" cy="186" r="6" fill="#9fd8ff" opacity="0.35"/></g>
+    </g>
+
+    <!-- ===== Lv.8 小椅子 ===== -->
+    <g class="grow" data-prop="bench" data-lv="8">
+      <ellipse cx="408" cy="250" rx="17" ry="4.5" fill="#4f8a30" opacity="0.4"/>
+      <rect x="392" y="232" width="32" height="6" rx="3" fill="url(#iWood)" stroke="#9a6b42" stroke-width="1.8"/>
+      <rect x="392" y="222" width="32" height="5" rx="2.5" fill="url(#iWood)" stroke="#9a6b42" stroke-width="1.6"/>
+      <path d="M396 238 v10 M420 238 v10 M396 228 v4 M420 228 v4" stroke="#8a5c36" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- ===== Lv.12 小花圃 ===== -->
+    <g class="grow" data-prop="flowerbed" data-lv="12">
+      <rect x="200" y="236" width="50" height="18" rx="9" fill="url(#iWoodDark)" stroke="#7c5430" stroke-width="2"/>
+      <rect x="204" y="239" width="42" height="11" rx="5.5" fill="#6e4a28"/>
+      <g transform="translate(212,236)"><line y1="2" y2="7" stroke="#5fa84e" stroke-width="2"/><circle r="4" fill="#ff9ec6"/><circle r="1.6" fill="#fff3c2"/></g>
+      <g transform="translate(225,238)"><line y1="2" y2="6" stroke="#5fa84e" stroke-width="2"/><circle r="4" fill="#ffd45e"/><circle r="1.6" fill="#ff8a65"/></g>
+      <g transform="translate(238,236)"><line y1="2" y2="7" stroke="#5fa84e" stroke-width="2"/><circle r="4" fill="#c5a8ff"/><circle r="1.6" fill="#fff"/></g>
+    </g>
+
+    <!-- ===== Lv.16 粉色花樹 ===== -->
+    <g class="grow" data-prop="tree2" data-lv="16">
+      <ellipse cx="416" cy="216" rx="20" ry="6" fill="#4f8a30" opacity="0.35"/>
+      <path d="M413 216 q-2 -18 -4 -26 q8 -5 11 0 q-3 8 -2 26 Z" fill="url(#iTrunk)"/>
+      <circle cx="415" cy="174" r="21" fill="url(#iLeafPink)"/>
+      <circle cx="398" cy="186" r="13" fill="url(#iLeafPink)"/>
+      <circle cx="432" cy="186" r="14" fill="url(#iLeafPink)"/>
+      <circle cx="408" cy="168" r="5" fill="#ffeaf4" opacity="0.9"/>
+      <circle cx="424" cy="180" r="2.2" fill="#fff"/>
+    </g>
+
+    <!-- ===== Lv.20 小郵筒 ===== -->
+    <g class="grow" data-prop="mailbox" data-lv="20">
+      <ellipse cx="306" cy="258" rx="8" ry="3" fill="#4f8a30" opacity="0.4"/>
+      <rect x="303" y="240" width="5" height="18" rx="2.5" fill="url(#iWoodDark)"/>
+      <path d="M294 230 h18 q5 0 5 6 v6 h-23 Z" fill="#ff8a80" stroke="#d8645c" stroke-width="2"/>
+      <path d="M294 230 q-5 0 -5 6 v6 h5 Z" fill="#ffb0a8"/>
+      <rect x="311" y="220" width="3" height="10" fill="#ffd45e"/>
+    </g>
+
+    <!-- ===== Lv.30 寶箱 ===== -->
+    <g class="grow" data-prop="chest" data-lv="30">
+      <ellipse cx="148" cy="246" rx="15" ry="4.5" fill="#4f8a30" opacity="0.4"/>
+      <rect x="134" y="230" width="28" height="17" rx="4" fill="url(#iWoodDark)" stroke="#7c5430" stroke-width="2.2"/>
+      <path d="M134 232 q14 -11 28 0 l0 4 l-28 0 Z" fill="url(#iWood)" stroke="#7c5430" stroke-width="2.2"/>
+      <rect x="144" y="233" width="8" height="9" rx="2" fill="#ffd45e" stroke="#caa353" stroke-width="1.6"/>
+    </g>
+
+    <!-- ===== Lv.40 彩旗 ===== -->
+    <g class="grow" data-prop="bunting" data-lv="40">
+      <path d="M196 132 Q250 116 308 134" fill="none" stroke="#d8b78a" stroke-width="2"/>
+      <path d="M212 128 l5 9 l-10 0 Z" fill="#ff9ec6"/>
+      <path d="M234 122 l5 9 l-10 0 Z" fill="#ffd45e"/>
+      <path d="M258 120 l5 9 l-10 0 Z" fill="#8fe7ff"/>
+      <path d="M282 124 l5 9 l-10 0 Z" fill="#c5a8ff"/>
+    </g>
+
+    <!-- ===== Lv.80 蝴蝶 ===== -->
+    <g class="grow butterfly" data-prop="butterfly" data-lv="80">
+      <g transform="translate(352,196)">
+        <path d="M0 0 q-7 -8 -10 -2 q0 6 10 4 Z" fill="#ffb7e2"/>
+        <path d="M0 0 q7 -8 10 -2 q0 6 -10 4 Z" fill="#ff9ec6"/>
+        <line x1="0" y1="-2" x2="0" y2="4" stroke="#7c5a4a" stroke-width="1.6"/>
+      </g>
+    </g>
+  </g>
+</svg>
+                <div class="mini-buddy" id="mini-buddy" aria-label="圓圓狀態">
+                  <svg viewBox="0 0 120 124" width="62" height="62" aria-hidden="true">
+  <defs>
+    <radialGradient id="bIsland-fur" cx="38%" cy="28%" r="88%">
+      <stop offset="0%" stop-color="#fff7e6"/><stop offset="50%" stop-color="#f4dcab"/><stop offset="100%" stop-color="#e3c084"/>
+    </radialGradient>
+    <radialGradient id="bIsland-furB" cx="42%" cy="22%" r="92%">
+      <stop offset="0%" stop-color="#fdefce"/><stop offset="100%" stop-color="#e8c98c"/>
+    </radialGradient>
+    <radialGradient id="bIsland-muz" cx="45%" cy="32%" r="80%">
+      <stop offset="0%" stop-color="#fffaf2"/><stop offset="100%" stop-color="#f6e4c2"/>
+    </radialGradient>
+    <radialGradient id="bIsland-belly" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#fffaf0"/><stop offset="100%" stop-color="#f7e7c8"/>
+    </radialGradient>
+    <linearGradient id="bIsland-scarf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff9d86"/><stop offset="100%" stop-color="#f0715c"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="60" cy="116" rx="33" ry="6.5" fill="#7c5c34" opacity="0.16"/>
+
+  <!-- 身體:毛邊陰影層 + 主體 -->
+  <path d="M60.0,55.6 Q62.5,56.6 64.9,57.0 Q67.4,57.4 70.2,56.6 Q72.1,58.9 74.3,60.0 Q76.5,61.1 79.2,61.6 Q80.5,64.0 81.9,66.1 Q84.0,67.5 86.4,68.8 Q86.9,71.5 87.8,73.8 Q89.1,75.9 90.9,78.0 Q90.6,80.6 90.9,83.1 Q91.4,85.5 92.0,88.0 Q91.4,90.5 90.9,92.9 Q90.6,95.4 90.8,98.0 Q89.1,100.1 87.7,102.1 Q86.9,104.5 86.3,107.1 Q84.0,108.5 82.2,110.2 Q80.5,112.0 78.7,113.8 Q76.5,114.9 74.2,115.8 Q72.1,117.1 70.0,118.9 Q67.4,118.6 64.9,118.8 Q62.5,119.4 60.0,119.9 Q57.5,119.4 55.1,118.8 Q52.6,118.6 50.0,118.7 Q47.9,117.1 45.8,115.8 Q43.5,114.9 41.1,114.0 Q39.5,112.0 38.0,110.0 Q36.0,108.5 34.0,106.9 Q33.1,104.5 32.1,102.2 Q30.9,100.1 29.4,97.9 Q29.4,95.4 29.0,92.9 Q28.6,90.5 27.8,88.0 Q28.6,85.5 28.9,83.1 Q29.4,80.6 29.5,78.1 Q30.9,75.9 32.0,73.7 Q33.1,71.5 33.4,68.7 Q36.0,67.5 37.9,65.9 Q39.5,64.0 41.0,61.9 Q43.5,61.1 45.7,59.9 Q47.9,58.9 50.2,57.7 Q52.6,57.4 55.1,56.9 Q57.5,56.6 60.0,55.6 Z" fill="#e3c489" transform="translate(0,1.5)"/>
+  <path d="M60.0,55.6 Q62.5,56.6 64.9,57.0 Q67.4,57.4 70.2,56.6 Q72.1,58.9 74.3,60.0 Q76.5,61.1 79.2,61.6 Q80.5,64.0 81.9,66.1 Q84.0,67.5 86.4,68.8 Q86.9,71.5 87.8,73.8 Q89.1,75.9 90.9,78.0 Q90.6,80.6 90.9,83.1 Q91.4,85.5 92.0,88.0 Q91.4,90.5 90.9,92.9 Q90.6,95.4 90.8,98.0 Q89.1,100.1 87.7,102.1 Q86.9,104.5 86.3,107.1 Q84.0,108.5 82.2,110.2 Q80.5,112.0 78.7,113.8 Q76.5,114.9 74.2,115.8 Q72.1,117.1 70.0,118.9 Q67.4,118.6 64.9,118.8 Q62.5,119.4 60.0,119.9 Q57.5,119.4 55.1,118.8 Q52.6,118.6 50.0,118.7 Q47.9,117.1 45.8,115.8 Q43.5,114.9 41.1,114.0 Q39.5,112.0 38.0,110.0 Q36.0,108.5 34.0,106.9 Q33.1,104.5 32.1,102.2 Q30.9,100.1 29.4,97.9 Q29.4,95.4 29.0,92.9 Q28.6,90.5 27.8,88.0 Q28.6,85.5 28.9,83.1 Q29.4,80.6 29.5,78.1 Q30.9,75.9 32.0,73.7 Q33.1,71.5 33.4,68.7 Q36.0,67.5 37.9,65.9 Q39.5,64.0 41.0,61.9 Q43.5,61.1 45.7,59.9 Q47.9,58.9 50.2,57.7 Q52.6,57.4 55.1,56.9 Q57.5,56.6 60.0,55.6 Z" fill="url(#bIsland-furB)"/>
+  <circle cx="62.1" cy="66.8" r="3.3" fill="#f0d9a6" opacity="0.4"/><circle cx="64.3" cy="69.7" r="2.5" fill="#f0d9a6" opacity="0.4"/><circle cx="36.4" cy="90.2" r="2.6" fill="#f0d9a6" opacity="0.4"/><circle cx="82.6" cy="84.1" r="2.4" fill="#f0d9a6" opacity="0.4"/><circle cx="38.3" cy="100.0" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="39.9" cy="103.8" r="3.3" fill="#f0d9a6" opacity="0.4"/><circle cx="80.6" cy="104.8" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="56.3" cy="115.8" r="2.4" fill="#f0d9a6" opacity="0.4"/><circle cx="81.0" cy="95.2" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="42.8" cy="105.3" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="59.6" cy="68.6" r="2.2" fill="#f0d9a6" opacity="0.4"/><circle cx="80.9" cy="91.8" r="2.4" fill="#f0d9a6" opacity="0.4"/>
+  <ellipse cx="60" cy="91" rx="18" ry="15" fill="url(#bIsland-belly)"/>
+
+  <!-- 腿 -->
+  <path d="M42.0,96.1 Q44.0,96.6 45.9,96.9 Q47.8,97.4 49.9,97.7 Q51.0,99.0 52.1,100.1 Q53.4,101.1 54.8,102.2 Q54.6,103.7 54.8,105.0 Q54.6,106.3 54.7,107.8 Q53.4,108.9 52.2,109.9 Q51.0,111.0 49.6,112.0 Q47.8,112.6 45.9,113.1 Q44.0,113.4 42.0,113.9 Q40.0,113.4 38.1,113.1 Q36.2,112.6 34.1,112.3 Q33.0,111.0 31.8,110.0 Q30.6,108.9 29.2,107.8 Q29.4,106.3 29.2,105.0 Q29.4,103.7 29.6,102.3 Q30.6,101.1 31.7,100.0 Q33.0,99.0 34.3,97.9 Q36.2,97.4 38.1,96.9 Q40.0,96.6 42.0,96.1 Z" fill="url(#bIsland-furB)"/>
+  <path d="M78.0,96.1 Q80.0,96.6 81.9,97.0 Q83.8,97.4 85.8,97.9 Q87.0,99.0 88.3,100.0 Q89.4,101.1 90.7,102.2 Q90.6,103.7 90.5,105.0 Q90.6,106.3 90.5,107.7 Q89.4,108.9 88.1,109.9 Q87.0,111.0 86.0,112.3 Q83.8,112.6 81.9,113.0 Q80.0,113.4 78.0,114.0 Q76.0,113.4 74.1,113.1 Q72.2,112.6 70.3,112.0 Q69.0,111.0 67.7,110.0 Q66.6,108.9 65.6,107.7 Q65.4,106.3 65.2,105.0 Q65.4,103.7 65.6,102.3 Q66.6,101.1 67.6,100.0 Q69.0,99.0 70.3,97.9 Q72.2,97.4 74.1,97.0 Q76.0,96.6 78.0,96.1 Z" fill="url(#bIsland-furB)"/>
+  <ellipse cx="40" cy="106" rx="6" ry="4.5" fill="#fdf3da"/>
+  <ellipse cx="80" cy="106" rx="6" ry="4.5" fill="#fdf3da"/>
+
+  <!-- 手 -->
+  <g transform="rotate(15 32 82)"><path d="M32.0,70.0 Q33.3,70.3 34.6,71.0 Q35.9,71.5 37.4,71.8 Q38.1,73.6 38.9,75.1 Q39.7,76.6 40.5,78.2 Q40.5,80.2 40.5,82.0 Q40.5,83.8 40.7,85.9 Q39.7,87.4 39.0,89.0 Q38.1,90.4 37.2,91.8 Q35.9,92.5 34.6,93.1 Q33.3,93.7 32.0,94.5 Q30.7,93.7 29.4,93.1 Q28.1,92.5 26.6,92.2 Q25.9,90.4 25.2,88.8 Q24.3,87.4 23.3,85.9 Q23.5,83.8 23.4,82.0 Q23.5,80.2 23.5,78.2 Q24.3,76.6 25.0,75.0 Q25.9,73.6 26.6,71.8 Q28.1,71.5 29.4,70.8 Q30.7,70.3 32.0,70.0 Z" fill="url(#bIsland-furB)"/></g>
+  <g transform="rotate(-15 88 82)"><path d="M88.0,69.6 Q89.3,70.3 90.7,70.7 Q91.9,71.5 93.3,72.0 Q94.1,73.6 94.8,75.2 Q95.7,76.6 96.7,78.1 Q96.5,80.2 96.5,82.0 Q96.5,83.8 96.4,85.7 Q95.7,87.4 95.0,89.0 Q94.1,90.4 93.4,92.2 Q91.9,92.5 90.6,93.0 Q89.3,93.7 88.0,94.5 Q86.7,93.7 85.3,93.2 Q84.1,92.5 82.7,92.1 Q81.9,90.4 81.1,88.9 Q80.3,87.4 79.3,85.9 Q79.5,83.8 79.6,82.0 Q79.5,80.2 79.3,78.1 Q80.3,76.6 81.1,75.1 Q81.9,73.6 82.7,72.0 Q84.1,71.5 85.3,70.7 Q86.7,70.3 88.0,69.6 Z" fill="url(#bIsland-furB)"/></g>
+
+  <!-- 星星徽章 -->
+  <path d="M60 85 l2.6 5.2 5.8 0.6 -4.3 3.9 1.2 5.7 -5.3 -2.9 -5.3 2.9 1.2 -5.7 -4.3 -3.9 5.8 -0.6 Z" fill="#ffd45e" stroke="#e8a93a" stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- 耳朵 -->
+  <path d="M38.0,9.6 Q39.9,10.3 41.6,10.8 Q43.4,11.4 45.4,11.8 Q46.4,13.6 47.6,15.0 Q48.6,16.6 50.0,18.1 Q49.7,20.1 49.9,22.0 Q49.7,23.9 49.5,25.7 Q48.6,27.4 47.4,28.8 Q46.4,30.4 45.2,31.8 Q43.4,32.6 41.6,33.1 Q39.9,33.7 38.0,34.7 Q36.1,33.7 34.4,33.1 Q32.6,32.6 30.8,31.9 Q29.6,30.4 28.4,29.0 Q27.4,27.4 26.0,25.9 Q26.3,23.9 26.1,22.0 Q26.3,20.1 26.3,18.2 Q27.4,16.6 28.5,15.1 Q29.6,13.6 30.6,11.9 Q32.6,11.4 34.4,10.9 Q36.1,10.3 38.0,9.6 Z" fill="#e3c489" transform="translate(0,1)"/>
+  <path d="M38.0,9.6 Q39.9,10.3 41.6,10.8 Q43.4,11.4 45.4,11.8 Q46.4,13.6 47.6,15.0 Q48.6,16.6 50.0,18.1 Q49.7,20.1 49.9,22.0 Q49.7,23.9 49.5,25.7 Q48.6,27.4 47.4,28.8 Q46.4,30.4 45.2,31.8 Q43.4,32.6 41.6,33.1 Q39.9,33.7 38.0,34.7 Q36.1,33.7 34.4,33.1 Q32.6,32.6 30.8,31.9 Q29.6,30.4 28.4,29.0 Q27.4,27.4 26.0,25.9 Q26.3,23.9 26.1,22.0 Q26.3,20.1 26.3,18.2 Q27.4,16.6 28.5,15.1 Q29.6,13.6 30.6,11.9 Q32.6,11.4 34.4,10.9 Q36.1,10.3 38.0,9.6 Z" fill="url(#bIsland-fur)"/>
+  <path d="M82.0,9.7 Q83.9,10.3 85.7,10.7 Q87.4,11.4 89.4,11.8 Q90.4,13.6 91.4,15.2 Q92.6,16.6 94.0,18.1 Q93.7,20.1 93.8,22.0 Q93.7,23.9 93.9,25.9 Q92.6,27.4 91.5,28.9 Q90.4,30.4 89.2,31.9 Q87.4,32.6 85.6,33.2 Q83.9,33.7 82.0,34.5 Q80.1,33.7 78.3,33.3 Q76.6,32.6 74.6,32.2 Q73.6,30.4 72.3,29.0 Q71.4,27.4 70.0,25.9 Q70.3,23.9 70.1,22.0 Q70.3,20.1 69.9,18.1 Q71.4,16.6 72.4,15.0 Q73.6,13.6 74.7,12.0 Q76.6,11.4 78.4,10.9 Q80.1,10.3 82.0,9.7 Z" fill="#e3c489" transform="translate(0,1)"/>
+  <path d="M82.0,9.7 Q83.9,10.3 85.7,10.7 Q87.4,11.4 89.4,11.8 Q90.4,13.6 91.4,15.2 Q92.6,16.6 94.0,18.1 Q93.7,20.1 93.8,22.0 Q93.7,23.9 93.9,25.9 Q92.6,27.4 91.5,28.9 Q90.4,30.4 89.2,31.9 Q87.4,32.6 85.6,33.2 Q83.9,33.7 82.0,34.5 Q80.1,33.7 78.3,33.3 Q76.6,32.6 74.6,32.2 Q73.6,30.4 72.3,29.0 Q71.4,27.4 70.0,25.9 Q70.3,23.9 70.1,22.0 Q70.3,20.1 69.9,18.1 Q71.4,16.6 72.4,15.0 Q73.6,13.6 74.7,12.0 Q76.6,11.4 78.4,10.9 Q80.1,10.3 82.0,9.7 Z" fill="url(#bIsland-fur)"/>
+  <circle cx="38" cy="23" r="5" fill="#f0cf98"/>
+  <circle cx="82" cy="23" r="5" fill="#f0cf98"/>
+
+  <!-- 頭:毛邊陰影 + 主體 -->
+  <path d="M60.0,9.9 Q61.9,10.6 63.8,11.2 Q65.8,11.1 68.1,10.3 Q69.5,12.2 71.3,13.1 Q73.1,13.6 75.2,14.0 Q76.4,15.6 77.7,17.1 Q79.4,18.0 81.9,18.3 Q82.1,20.7 82.9,22.4 Q84.3,23.7 86.1,25.0 Q86.1,27.1 86.7,28.9 Q87.4,30.6 89.0,32.2 Q88.2,34.3 88.0,36.2 Q88.5,38.0 89.5,39.9 Q88.2,41.7 87.9,43.6 Q87.4,45.4 87.9,47.5 Q86.1,48.9 85.1,50.5 Q84.3,52.3 84.0,54.3 Q82.1,55.3 80.6,56.6 Q79.4,58.0 78.8,60.2 Q76.4,60.4 74.8,61.4 Q73.1,62.4 71.8,64.1 Q69.5,63.8 67.6,64.2 Q65.8,64.9 64.0,66.3 Q61.9,65.4 60.0,65.5 Q58.1,65.4 56.0,65.8 Q54.2,64.9 52.4,64.3 Q50.5,63.8 48.4,63.7 Q46.9,62.4 45.4,61.2 Q43.6,60.4 41.2,60.2 Q40.6,58.0 39.5,56.4 Q37.9,55.3 35.9,54.4 Q35.7,52.3 34.6,50.7 Q33.9,48.9 32.9,47.3 Q32.6,45.4 32.3,43.5 Q31.8,41.7 30.7,39.9 Q31.5,38.0 31.6,36.1 Q31.8,34.3 30.9,32.2 Q32.6,30.6 33.4,28.9 Q33.9,27.1 33.5,24.8 Q35.7,23.7 36.7,22.2 Q37.9,20.7 38.8,19.0 Q40.6,18.0 42.2,17.0 Q43.6,15.6 45.0,14.2 Q46.9,13.6 48.8,13.2 Q50.5,12.2 52.1,10.8 Q54.2,11.1 56.1,10.7 Q58.1,10.6 60.0,9.9 Z" fill="#e3c489" transform="translate(0,1.5)"/>
+  <path d="M60.0,9.9 Q61.9,10.6 63.8,11.2 Q65.8,11.1 68.1,10.3 Q69.5,12.2 71.3,13.1 Q73.1,13.6 75.2,14.0 Q76.4,15.6 77.7,17.1 Q79.4,18.0 81.9,18.3 Q82.1,20.7 82.9,22.4 Q84.3,23.7 86.1,25.0 Q86.1,27.1 86.7,28.9 Q87.4,30.6 89.0,32.2 Q88.2,34.3 88.0,36.2 Q88.5,38.0 89.5,39.9 Q88.2,41.7 87.9,43.6 Q87.4,45.4 87.9,47.5 Q86.1,48.9 85.1,50.5 Q84.3,52.3 84.0,54.3 Q82.1,55.3 80.6,56.6 Q79.4,58.0 78.8,60.2 Q76.4,60.4 74.8,61.4 Q73.1,62.4 71.8,64.1 Q69.5,63.8 67.6,64.2 Q65.8,64.9 64.0,66.3 Q61.9,65.4 60.0,65.5 Q58.1,65.4 56.0,65.8 Q54.2,64.9 52.4,64.3 Q50.5,63.8 48.4,63.7 Q46.9,62.4 45.4,61.2 Q43.6,60.4 41.2,60.2 Q40.6,58.0 39.5,56.4 Q37.9,55.3 35.9,54.4 Q35.7,52.3 34.6,50.7 Q33.9,48.9 32.9,47.3 Q32.6,45.4 32.3,43.5 Q31.8,41.7 30.7,39.9 Q31.5,38.0 31.6,36.1 Q31.8,34.3 30.9,32.2 Q32.6,30.6 33.4,28.9 Q33.9,27.1 33.5,24.8 Q35.7,23.7 36.7,22.2 Q37.9,20.7 38.8,19.0 Q40.6,18.0 42.2,17.0 Q43.6,15.6 45.0,14.2 Q46.9,13.6 48.8,13.2 Q50.5,12.2 52.1,10.8 Q54.2,11.1 56.1,10.7 Q58.1,10.6 60.0,9.9 Z" fill="url(#bIsland-fur)"/>
+  <circle cx="46.9" cy="19.6" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="83.8" cy="43.5" r="3.4" fill="#f0d9a6" opacity="0.4"/><circle cx="74.3" cy="22.8" r="2.8" fill="#f0d9a6" opacity="0.4"/><circle cx="75.9" cy="23.0" r="2.8" fill="#f0d9a6" opacity="0.4"/><circle cx="72.4" cy="21.8" r="3.0" fill="#f0d9a6" opacity="0.4"/><circle cx="79.7" cy="37.1" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="38.0" cy="32.5" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="35.5" cy="38.5" r="2.2" fill="#f0d9a6" opacity="0.4"/><circle cx="61.2" cy="58.9" r="2.5" fill="#f0d9a6" opacity="0.4"/><circle cx="63.5" cy="18.4" r="3.2" fill="#f0d9a6" opacity="0.4"/>
+  <!-- 頭頂呆毛 -->
+  <path d="M57 13 q3 -8 5 -1 q3 -6 3 1" stroke="#e3c084" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <!-- 絨毛紋理 -->
+  <path d="M39 42 q-2.5 3 -0.5 6 M81 42 q2.5 3 0.5 6 M45 26 q-2.5 2 -1.5 5 M75 26 q2.5 2 1.5 5" stroke="#ecd4a2" stroke-width="1.3" fill="none" opacity="0.55"/>
+
+  <!-- 圍巾 -->
+  <path d="M38 55 q22 12 44 0 l-2 9 q-20 10 -40 0 Z" fill="url(#bIsland-scarf)"/>
+  <path d="M70 61 l6 16 q1 4 -3 5 l-5 1 q-3 0.5 -3 -3 l1 -17 Z" fill="url(#bIsland-scarf)"/>
+  <path d="M68 79 h8 M69 83 h7" stroke="#d85a46" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- 臉 -->
+  <ellipse cx="60" cy="45" rx="13" ry="10" fill="url(#bIsland-muz)"/>
+  <path d="M56 42 q4 -3.4 8 0 q-1 3.6 -4 3.6 q-3 0 -4 -3.6 Z" fill="#8a5c3a"/>
+  <path d="M60 46 v3 M60 49 q-3 3 -6 1 M60 49 q3 3 6 1" stroke="#8a5c3a" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+  <circle cx="48" cy="36" r="3.1" fill="#4a3424"/>
+  <circle cx="72" cy="36" r="3.1" fill="#4a3424"/>
+  <circle cx="49.2" cy="34.8" r="1.1" fill="#fff"/>
+  <circle cx="73.2" cy="34.8" r="1.1" fill="#fff"/>
+  <ellipse cx="42" cy="44" rx="4.6" ry="2.9" fill="#ffb9a0" opacity="0.7"/>
+  <ellipse cx="78" cy="44" rx="4.6" ry="2.9" fill="#ffb9a0" opacity="0.7"/>
+</svg>
+                  <span id="mini-buddy-label">待機</span>
+                </div>
+              </div>
+
+              <div class="level-row">
+                <span>Lv.<strong id="level">1</strong><em class="level-cap">/99</em> 小島成長</span>
+                <div class="progress-track"><div id="level-progress"></div></div>
+                <span id="next-level-hint">再 <strong id="next-level-stars">3</strong> ★ 升級</span>
+              </div>
+              
+            </article>
+
+            <div class="hub-row">
+            <article class="panel jar-summary night hub-side" data-view-jump="jar">
+              <p class="eyebrow">Star Jar</p>
+              <h2><span data-player-name>Fang</span> 的星星瓶</h2>
+              <div class="mini-jar-wrap">
+                <div class="bottle dreamy mini-bottle" id="mini-jar">
+                  <svg class="bottle-glass" viewBox="0 0 100 150" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <radialGradient id="gGlow-mini-jar" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#ffdcb0" stop-opacity="0.75"/>
+                        <stop offset="55%" stop-color="#ffc49a" stop-opacity="0.28"/>
+                        <stop offset="100%" stop-color="#ffc49a" stop-opacity="0"/>
+                      </radialGradient>
+                      <linearGradient id="gGlassBody-mini-jar" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.22"/>
+                        <stop offset="14%" stop-color="#ffffff" stop-opacity="0.04"/>
+                        <stop offset="50%" stop-color="#dfeeff" stop-opacity="0.02"/>
+                        <stop offset="86%" stop-color="#ffffff" stop-opacity="0.05"/>
+                        <stop offset="100%" stop-color="#ffffff" stop-opacity="0.2"/>
+                      </linearGradient>
+                      <linearGradient id="gGlassEdge-mini-jar" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#eaf4ff" stop-opacity="0.95"/>
+                        <stop offset="45%" stop-color="#bcd4f2" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="#d8e8fb" stop-opacity="0.85"/>
+                      </linearGradient>
+                    </defs>
+                    <!-- 玻璃瓶塞(裝著一小片星空) -->
+                    <g class="stopper">
+                      <path d="M34 3 q16 -4 32 0 l-2 11 q-14 3 -28 0 Z" fill="rgba(230,242,255,0.30)" stroke="url(#gGlassEdge-mini-jar)" stroke-width="1.8"/>
+                      <circle cx="42" cy="8" r="1" fill="#9fd8ff"/><circle cx="50" cy="6" r="1.2" fill="#ffd9f2"/><circle cx="58" cy="9" r="0.9" fill="#fff3b0"/>
+                      <rect x="38" y="14" width="24" height="5" rx="2" fill="rgba(214,230,250,0.4)" stroke="#cfe2f8" stroke-opacity="0.8" stroke-width="1.2"/>
+                    </g>
+                    <!-- 瓶口環:玻璃厚度 -->
+                    <rect x="28" y="19" width="44" height="7" rx="3.5" fill="rgba(235,245,255,0.18)" stroke="url(#gGlassEdge-mini-jar)" stroke-width="1.8"/>
+                    <ellipse cx="50" cy="22.5" rx="17" ry="2.6" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="1.2"/>
+                    <!-- 瓶身:透明玻璃 -->
+                    <path d="M29 26 q-11 5 -11 18 v82 q0 20 20 20 h24 q20 0 20 -20 v-82 q0 -13 -11 -18 Z"
+                          fill="url(#gGlassBody-mini-jar)" stroke="url(#gGlassEdge-mini-jar)" stroke-width="2.2"/>
+                    <!-- 玻璃厚度內緣 -->
+                    <path d="M31.5 28 q-10.5 5 -10.5 16.5 v81 q0 17.5 17.5 17.5 h23 q17.5 0 17.5 -17.5 v-81 q0 -11.5 -10.5 -16.5 Z"
+                          fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1.1"/>
+                    <!-- 瓶底暖光 -->
+                    <ellipse cx="50" cy="128" rx="29" ry="15" fill="url(#gGlow-mini-jar)"/>
+                    <!-- 瓶底厚玻璃反光 -->
+                    <ellipse cx="50" cy="138" rx="22" ry="4.5" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>
+                    <!-- 左側主高光帶 -->
+                    <path d="M25 48 q-4 36 1 72" fill="none" stroke="#ffffff" stroke-opacity="0.65" stroke-width="5" stroke-linecap="round"/>
+                    <path d="M31 40 q-2 12 -1 22" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2.4" stroke-linecap="round"/>
+                    <!-- 右側細高光 -->
+                    <path d="M76 56 q3 30 -1 58" fill="none" stroke="#ffffff" stroke-opacity="0.32" stroke-width="2.2" stroke-linecap="round"/>
+                    <!-- 柔和的環境色映在玻璃上 -->
+                    <path d="M29 26 q-11 5 -11 18 v40" fill="none" stroke="#aee4ff" stroke-opacity="0.35" stroke-width="2.4" stroke-linecap="round"/>
+                    <path d="M71 26 q11 5 11 18 v40" fill="none" stroke="#ffc6e6" stroke-opacity="0.32" stroke-width="2.4" stroke-linecap="round"/>
+                  </svg>
+                  <canvas class="bottle-canvas" id="mini-jar-canvas"></canvas>
+                  <span class="sp s1">✦</span><span class="sp s2">✦</span><span class="sp s3">✧</span>
+                  <span class="sp s4">✦</span><span class="sp s5">✧</span>
+                </div>
+                <div>
+                  <strong id="jar-total-home">0</strong>
+                  <p class="muted">今日 +<span id="today-stars-home">0</span> 星</p>
+                </div>
+              </div>
+            </article>
+            <button class="buddy-hub" id="buddy-hub" type="button" aria-label="開啟圓圓聊天">
+              <span class="hub-glow" aria-hidden="true"></span>
+              <span class="hub-deck" aria-hidden="true"></span>
+              <svg viewBox="0 0 120 124" width="112" height="112" aria-hidden="true">
+  <defs>
+    <radialGradient id="bHub-fur" cx="38%" cy="28%" r="88%">
+      <stop offset="0%" stop-color="#fff7e6"/><stop offset="50%" stop-color="#f4dcab"/><stop offset="100%" stop-color="#e3c084"/>
+    </radialGradient>
+    <radialGradient id="bHub-furB" cx="42%" cy="22%" r="92%">
+      <stop offset="0%" stop-color="#fdefce"/><stop offset="100%" stop-color="#e8c98c"/>
+    </radialGradient>
+    <radialGradient id="bHub-muz" cx="45%" cy="32%" r="80%">
+      <stop offset="0%" stop-color="#fffaf2"/><stop offset="100%" stop-color="#f6e4c2"/>
+    </radialGradient>
+    <radialGradient id="bHub-belly" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#fffaf0"/><stop offset="100%" stop-color="#f7e7c8"/>
+    </radialGradient>
+    <linearGradient id="bHub-scarf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff9d86"/><stop offset="100%" stop-color="#f0715c"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="60" cy="116" rx="33" ry="6.5" fill="#7c5c34" opacity="0.16"/>
+
+  <!-- 身體:毛邊陰影層 + 主體 -->
+  <path d="M60.0,55.6 Q62.5,56.6 64.9,57.0 Q67.4,57.4 70.2,56.6 Q72.1,58.9 74.3,60.0 Q76.5,61.1 79.2,61.6 Q80.5,64.0 81.9,66.1 Q84.0,67.5 86.4,68.8 Q86.9,71.5 87.8,73.8 Q89.1,75.9 90.9,78.0 Q90.6,80.6 90.9,83.1 Q91.4,85.5 92.0,88.0 Q91.4,90.5 90.9,92.9 Q90.6,95.4 90.8,98.0 Q89.1,100.1 87.7,102.1 Q86.9,104.5 86.3,107.1 Q84.0,108.5 82.2,110.2 Q80.5,112.0 78.7,113.8 Q76.5,114.9 74.2,115.8 Q72.1,117.1 70.0,118.9 Q67.4,118.6 64.9,118.8 Q62.5,119.4 60.0,119.9 Q57.5,119.4 55.1,118.8 Q52.6,118.6 50.0,118.7 Q47.9,117.1 45.8,115.8 Q43.5,114.9 41.1,114.0 Q39.5,112.0 38.0,110.0 Q36.0,108.5 34.0,106.9 Q33.1,104.5 32.1,102.2 Q30.9,100.1 29.4,97.9 Q29.4,95.4 29.0,92.9 Q28.6,90.5 27.8,88.0 Q28.6,85.5 28.9,83.1 Q29.4,80.6 29.5,78.1 Q30.9,75.9 32.0,73.7 Q33.1,71.5 33.4,68.7 Q36.0,67.5 37.9,65.9 Q39.5,64.0 41.0,61.9 Q43.5,61.1 45.7,59.9 Q47.9,58.9 50.2,57.7 Q52.6,57.4 55.1,56.9 Q57.5,56.6 60.0,55.6 Z" fill="#e3c489" transform="translate(0,1.5)"/>
+  <path d="M60.0,55.6 Q62.5,56.6 64.9,57.0 Q67.4,57.4 70.2,56.6 Q72.1,58.9 74.3,60.0 Q76.5,61.1 79.2,61.6 Q80.5,64.0 81.9,66.1 Q84.0,67.5 86.4,68.8 Q86.9,71.5 87.8,73.8 Q89.1,75.9 90.9,78.0 Q90.6,80.6 90.9,83.1 Q91.4,85.5 92.0,88.0 Q91.4,90.5 90.9,92.9 Q90.6,95.4 90.8,98.0 Q89.1,100.1 87.7,102.1 Q86.9,104.5 86.3,107.1 Q84.0,108.5 82.2,110.2 Q80.5,112.0 78.7,113.8 Q76.5,114.9 74.2,115.8 Q72.1,117.1 70.0,118.9 Q67.4,118.6 64.9,118.8 Q62.5,119.4 60.0,119.9 Q57.5,119.4 55.1,118.8 Q52.6,118.6 50.0,118.7 Q47.9,117.1 45.8,115.8 Q43.5,114.9 41.1,114.0 Q39.5,112.0 38.0,110.0 Q36.0,108.5 34.0,106.9 Q33.1,104.5 32.1,102.2 Q30.9,100.1 29.4,97.9 Q29.4,95.4 29.0,92.9 Q28.6,90.5 27.8,88.0 Q28.6,85.5 28.9,83.1 Q29.4,80.6 29.5,78.1 Q30.9,75.9 32.0,73.7 Q33.1,71.5 33.4,68.7 Q36.0,67.5 37.9,65.9 Q39.5,64.0 41.0,61.9 Q43.5,61.1 45.7,59.9 Q47.9,58.9 50.2,57.7 Q52.6,57.4 55.1,56.9 Q57.5,56.6 60.0,55.6 Z" fill="url(#bHub-furB)"/>
+  <circle cx="62.1" cy="66.8" r="3.3" fill="#f0d9a6" opacity="0.4"/><circle cx="64.3" cy="69.7" r="2.5" fill="#f0d9a6" opacity="0.4"/><circle cx="36.4" cy="90.2" r="2.6" fill="#f0d9a6" opacity="0.4"/><circle cx="82.6" cy="84.1" r="2.4" fill="#f0d9a6" opacity="0.4"/><circle cx="38.3" cy="100.0" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="39.9" cy="103.8" r="3.3" fill="#f0d9a6" opacity="0.4"/><circle cx="80.6" cy="104.8" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="56.3" cy="115.8" r="2.4" fill="#f0d9a6" opacity="0.4"/><circle cx="81.0" cy="95.2" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="42.8" cy="105.3" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="59.6" cy="68.6" r="2.2" fill="#f0d9a6" opacity="0.4"/><circle cx="80.9" cy="91.8" r="2.4" fill="#f0d9a6" opacity="0.4"/>
+  <ellipse cx="60" cy="91" rx="18" ry="15" fill="url(#bHub-belly)"/>
+
+  <!-- 腿 -->
+  <path d="M42.0,96.1 Q44.0,96.6 45.9,96.9 Q47.8,97.4 49.9,97.7 Q51.0,99.0 52.1,100.1 Q53.4,101.1 54.8,102.2 Q54.6,103.7 54.8,105.0 Q54.6,106.3 54.7,107.8 Q53.4,108.9 52.2,109.9 Q51.0,111.0 49.6,112.0 Q47.8,112.6 45.9,113.1 Q44.0,113.4 42.0,113.9 Q40.0,113.4 38.1,113.1 Q36.2,112.6 34.1,112.3 Q33.0,111.0 31.8,110.0 Q30.6,108.9 29.2,107.8 Q29.4,106.3 29.2,105.0 Q29.4,103.7 29.6,102.3 Q30.6,101.1 31.7,100.0 Q33.0,99.0 34.3,97.9 Q36.2,97.4 38.1,96.9 Q40.0,96.6 42.0,96.1 Z" fill="url(#bHub-furB)"/>
+  <path d="M78.0,96.1 Q80.0,96.6 81.9,97.0 Q83.8,97.4 85.8,97.9 Q87.0,99.0 88.3,100.0 Q89.4,101.1 90.7,102.2 Q90.6,103.7 90.5,105.0 Q90.6,106.3 90.5,107.7 Q89.4,108.9 88.1,109.9 Q87.0,111.0 86.0,112.3 Q83.8,112.6 81.9,113.0 Q80.0,113.4 78.0,114.0 Q76.0,113.4 74.1,113.1 Q72.2,112.6 70.3,112.0 Q69.0,111.0 67.7,110.0 Q66.6,108.9 65.6,107.7 Q65.4,106.3 65.2,105.0 Q65.4,103.7 65.6,102.3 Q66.6,101.1 67.6,100.0 Q69.0,99.0 70.3,97.9 Q72.2,97.4 74.1,97.0 Q76.0,96.6 78.0,96.1 Z" fill="url(#bHub-furB)"/>
+  <ellipse cx="40" cy="106" rx="6" ry="4.5" fill="#fdf3da"/>
+  <ellipse cx="80" cy="106" rx="6" ry="4.5" fill="#fdf3da"/>
+
+  <!-- 手 -->
+  <g transform="rotate(15 32 82)"><path d="M32.0,70.0 Q33.3,70.3 34.6,71.0 Q35.9,71.5 37.4,71.8 Q38.1,73.6 38.9,75.1 Q39.7,76.6 40.5,78.2 Q40.5,80.2 40.5,82.0 Q40.5,83.8 40.7,85.9 Q39.7,87.4 39.0,89.0 Q38.1,90.4 37.2,91.8 Q35.9,92.5 34.6,93.1 Q33.3,93.7 32.0,94.5 Q30.7,93.7 29.4,93.1 Q28.1,92.5 26.6,92.2 Q25.9,90.4 25.2,88.8 Q24.3,87.4 23.3,85.9 Q23.5,83.8 23.4,82.0 Q23.5,80.2 23.5,78.2 Q24.3,76.6 25.0,75.0 Q25.9,73.6 26.6,71.8 Q28.1,71.5 29.4,70.8 Q30.7,70.3 32.0,70.0 Z" fill="url(#bHub-furB)"/></g>
+  <g transform="rotate(-15 88 82)"><path d="M88.0,69.6 Q89.3,70.3 90.7,70.7 Q91.9,71.5 93.3,72.0 Q94.1,73.6 94.8,75.2 Q95.7,76.6 96.7,78.1 Q96.5,80.2 96.5,82.0 Q96.5,83.8 96.4,85.7 Q95.7,87.4 95.0,89.0 Q94.1,90.4 93.4,92.2 Q91.9,92.5 90.6,93.0 Q89.3,93.7 88.0,94.5 Q86.7,93.7 85.3,93.2 Q84.1,92.5 82.7,92.1 Q81.9,90.4 81.1,88.9 Q80.3,87.4 79.3,85.9 Q79.5,83.8 79.6,82.0 Q79.5,80.2 79.3,78.1 Q80.3,76.6 81.1,75.1 Q81.9,73.6 82.7,72.0 Q84.1,71.5 85.3,70.7 Q86.7,70.3 88.0,69.6 Z" fill="url(#bHub-furB)"/></g>
+
+  <!-- 星星徽章 -->
+  <path d="M60 85 l2.6 5.2 5.8 0.6 -4.3 3.9 1.2 5.7 -5.3 -2.9 -5.3 2.9 1.2 -5.7 -4.3 -3.9 5.8 -0.6 Z" fill="#ffd45e" stroke="#e8a93a" stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- 耳朵 -->
+  <path d="M38.0,9.6 Q39.9,10.3 41.6,10.8 Q43.4,11.4 45.4,11.8 Q46.4,13.6 47.6,15.0 Q48.6,16.6 50.0,18.1 Q49.7,20.1 49.9,22.0 Q49.7,23.9 49.5,25.7 Q48.6,27.4 47.4,28.8 Q46.4,30.4 45.2,31.8 Q43.4,32.6 41.6,33.1 Q39.9,33.7 38.0,34.7 Q36.1,33.7 34.4,33.1 Q32.6,32.6 30.8,31.9 Q29.6,30.4 28.4,29.0 Q27.4,27.4 26.0,25.9 Q26.3,23.9 26.1,22.0 Q26.3,20.1 26.3,18.2 Q27.4,16.6 28.5,15.1 Q29.6,13.6 30.6,11.9 Q32.6,11.4 34.4,10.9 Q36.1,10.3 38.0,9.6 Z" fill="#e3c489" transform="translate(0,1)"/>
+  <path d="M38.0,9.6 Q39.9,10.3 41.6,10.8 Q43.4,11.4 45.4,11.8 Q46.4,13.6 47.6,15.0 Q48.6,16.6 50.0,18.1 Q49.7,20.1 49.9,22.0 Q49.7,23.9 49.5,25.7 Q48.6,27.4 47.4,28.8 Q46.4,30.4 45.2,31.8 Q43.4,32.6 41.6,33.1 Q39.9,33.7 38.0,34.7 Q36.1,33.7 34.4,33.1 Q32.6,32.6 30.8,31.9 Q29.6,30.4 28.4,29.0 Q27.4,27.4 26.0,25.9 Q26.3,23.9 26.1,22.0 Q26.3,20.1 26.3,18.2 Q27.4,16.6 28.5,15.1 Q29.6,13.6 30.6,11.9 Q32.6,11.4 34.4,10.9 Q36.1,10.3 38.0,9.6 Z" fill="url(#bHub-fur)"/>
+  <path d="M82.0,9.7 Q83.9,10.3 85.7,10.7 Q87.4,11.4 89.4,11.8 Q90.4,13.6 91.4,15.2 Q92.6,16.6 94.0,18.1 Q93.7,20.1 93.8,22.0 Q93.7,23.9 93.9,25.9 Q92.6,27.4 91.5,28.9 Q90.4,30.4 89.2,31.9 Q87.4,32.6 85.6,33.2 Q83.9,33.7 82.0,34.5 Q80.1,33.7 78.3,33.3 Q76.6,32.6 74.6,32.2 Q73.6,30.4 72.3,29.0 Q71.4,27.4 70.0,25.9 Q70.3,23.9 70.1,22.0 Q70.3,20.1 69.9,18.1 Q71.4,16.6 72.4,15.0 Q73.6,13.6 74.7,12.0 Q76.6,11.4 78.4,10.9 Q80.1,10.3 82.0,9.7 Z" fill="#e3c489" transform="translate(0,1)"/>
+  <path d="M82.0,9.7 Q83.9,10.3 85.7,10.7 Q87.4,11.4 89.4,11.8 Q90.4,13.6 91.4,15.2 Q92.6,16.6 94.0,18.1 Q93.7,20.1 93.8,22.0 Q93.7,23.9 93.9,25.9 Q92.6,27.4 91.5,28.9 Q90.4,30.4 89.2,31.9 Q87.4,32.6 85.6,33.2 Q83.9,33.7 82.0,34.5 Q80.1,33.7 78.3,33.3 Q76.6,32.6 74.6,32.2 Q73.6,30.4 72.3,29.0 Q71.4,27.4 70.0,25.9 Q70.3,23.9 70.1,22.0 Q70.3,20.1 69.9,18.1 Q71.4,16.6 72.4,15.0 Q73.6,13.6 74.7,12.0 Q76.6,11.4 78.4,10.9 Q80.1,10.3 82.0,9.7 Z" fill="url(#bHub-fur)"/>
+  <circle cx="38" cy="23" r="5" fill="#f0cf98"/>
+  <circle cx="82" cy="23" r="5" fill="#f0cf98"/>
+
+  <!-- 頭:毛邊陰影 + 主體 -->
+  <path d="M60.0,9.9 Q61.9,10.6 63.8,11.2 Q65.8,11.1 68.1,10.3 Q69.5,12.2 71.3,13.1 Q73.1,13.6 75.2,14.0 Q76.4,15.6 77.7,17.1 Q79.4,18.0 81.9,18.3 Q82.1,20.7 82.9,22.4 Q84.3,23.7 86.1,25.0 Q86.1,27.1 86.7,28.9 Q87.4,30.6 89.0,32.2 Q88.2,34.3 88.0,36.2 Q88.5,38.0 89.5,39.9 Q88.2,41.7 87.9,43.6 Q87.4,45.4 87.9,47.5 Q86.1,48.9 85.1,50.5 Q84.3,52.3 84.0,54.3 Q82.1,55.3 80.6,56.6 Q79.4,58.0 78.8,60.2 Q76.4,60.4 74.8,61.4 Q73.1,62.4 71.8,64.1 Q69.5,63.8 67.6,64.2 Q65.8,64.9 64.0,66.3 Q61.9,65.4 60.0,65.5 Q58.1,65.4 56.0,65.8 Q54.2,64.9 52.4,64.3 Q50.5,63.8 48.4,63.7 Q46.9,62.4 45.4,61.2 Q43.6,60.4 41.2,60.2 Q40.6,58.0 39.5,56.4 Q37.9,55.3 35.9,54.4 Q35.7,52.3 34.6,50.7 Q33.9,48.9 32.9,47.3 Q32.6,45.4 32.3,43.5 Q31.8,41.7 30.7,39.9 Q31.5,38.0 31.6,36.1 Q31.8,34.3 30.9,32.2 Q32.6,30.6 33.4,28.9 Q33.9,27.1 33.5,24.8 Q35.7,23.7 36.7,22.2 Q37.9,20.7 38.8,19.0 Q40.6,18.0 42.2,17.0 Q43.6,15.6 45.0,14.2 Q46.9,13.6 48.8,13.2 Q50.5,12.2 52.1,10.8 Q54.2,11.1 56.1,10.7 Q58.1,10.6 60.0,9.9 Z" fill="#e3c489" transform="translate(0,1.5)"/>
+  <path d="M60.0,9.9 Q61.9,10.6 63.8,11.2 Q65.8,11.1 68.1,10.3 Q69.5,12.2 71.3,13.1 Q73.1,13.6 75.2,14.0 Q76.4,15.6 77.7,17.1 Q79.4,18.0 81.9,18.3 Q82.1,20.7 82.9,22.4 Q84.3,23.7 86.1,25.0 Q86.1,27.1 86.7,28.9 Q87.4,30.6 89.0,32.2 Q88.2,34.3 88.0,36.2 Q88.5,38.0 89.5,39.9 Q88.2,41.7 87.9,43.6 Q87.4,45.4 87.9,47.5 Q86.1,48.9 85.1,50.5 Q84.3,52.3 84.0,54.3 Q82.1,55.3 80.6,56.6 Q79.4,58.0 78.8,60.2 Q76.4,60.4 74.8,61.4 Q73.1,62.4 71.8,64.1 Q69.5,63.8 67.6,64.2 Q65.8,64.9 64.0,66.3 Q61.9,65.4 60.0,65.5 Q58.1,65.4 56.0,65.8 Q54.2,64.9 52.4,64.3 Q50.5,63.8 48.4,63.7 Q46.9,62.4 45.4,61.2 Q43.6,60.4 41.2,60.2 Q40.6,58.0 39.5,56.4 Q37.9,55.3 35.9,54.4 Q35.7,52.3 34.6,50.7 Q33.9,48.9 32.9,47.3 Q32.6,45.4 32.3,43.5 Q31.8,41.7 30.7,39.9 Q31.5,38.0 31.6,36.1 Q31.8,34.3 30.9,32.2 Q32.6,30.6 33.4,28.9 Q33.9,27.1 33.5,24.8 Q35.7,23.7 36.7,22.2 Q37.9,20.7 38.8,19.0 Q40.6,18.0 42.2,17.0 Q43.6,15.6 45.0,14.2 Q46.9,13.6 48.8,13.2 Q50.5,12.2 52.1,10.8 Q54.2,11.1 56.1,10.7 Q58.1,10.6 60.0,9.9 Z" fill="url(#bHub-fur)"/>
+  <circle cx="46.9" cy="19.6" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="83.8" cy="43.5" r="3.4" fill="#f0d9a6" opacity="0.4"/><circle cx="74.3" cy="22.8" r="2.8" fill="#f0d9a6" opacity="0.4"/><circle cx="75.9" cy="23.0" r="2.8" fill="#f0d9a6" opacity="0.4"/><circle cx="72.4" cy="21.8" r="3.0" fill="#f0d9a6" opacity="0.4"/><circle cx="79.7" cy="37.1" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="38.0" cy="32.5" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="35.5" cy="38.5" r="2.2" fill="#f0d9a6" opacity="0.4"/><circle cx="61.2" cy="58.9" r="2.5" fill="#f0d9a6" opacity="0.4"/><circle cx="63.5" cy="18.4" r="3.2" fill="#f0d9a6" opacity="0.4"/>
+  <!-- 頭頂呆毛 -->
+  <path d="M57 13 q3 -8 5 -1 q3 -6 3 1" stroke="#e3c084" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <!-- 絨毛紋理 -->
+  <path d="M39 42 q-2.5 3 -0.5 6 M81 42 q2.5 3 0.5 6 M45 26 q-2.5 2 -1.5 5 M75 26 q2.5 2 1.5 5" stroke="#ecd4a2" stroke-width="1.3" fill="none" opacity="0.55"/>
+
+  <!-- 圍巾 -->
+  <path d="M38 55 q22 12 44 0 l-2 9 q-20 10 -40 0 Z" fill="url(#bHub-scarf)"/>
+  <path d="M70 61 l6 16 q1 4 -3 5 l-5 1 q-3 0.5 -3 -3 l1 -17 Z" fill="url(#bHub-scarf)"/>
+  <path d="M68 79 h8 M69 83 h7" stroke="#d85a46" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- 臉 -->
+  <ellipse cx="60" cy="45" rx="13" ry="10" fill="url(#bHub-muz)"/>
+  <path d="M56 42 q4 -3.4 8 0 q-1 3.6 -4 3.6 q-3 0 -4 -3.6 Z" fill="#8a5c3a"/>
+  <path d="M60 46 v3 M60 49 q-3 3 -6 1 M60 49 q3 3 6 1" stroke="#8a5c3a" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+  <circle cx="48" cy="36" r="3.1" fill="#4a3424"/>
+  <circle cx="72" cy="36" r="3.1" fill="#4a3424"/>
+  <circle cx="49.2" cy="34.8" r="1.1" fill="#fff"/>
+  <circle cx="73.2" cy="34.8" r="1.1" fill="#fff"/>
+  <ellipse cx="42" cy="44" rx="4.6" ry="2.9" fill="#ffb9a0" opacity="0.7"/>
+  <ellipse cx="78" cy="44" rx="4.6" ry="2.9" fill="#ffb9a0" opacity="0.7"/>
+</svg>
+              <strong>圓圓</strong>
+              <span class="hub-sub">點我聊聊天,我陪你完成今天的任務</span>
+            </button>
+            <button class="panel hub-side add-task-hub" id="add-task-hub" type="button">
+              <span class="add-plus" aria-hidden="true">＋</span>
+              <strong>新增任務</strong>
+              <span class="hub-side-sub">寫下今天想完成的事</span>
+            </button>
+          </div>
+
+            <article class="panel today-card">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Today Focus</p>
+                  <h2>今天最重要的三件事</h2>
+                
+                <button class="primary-action tiny" id="add-task-quick" type="button">＋ 新增任務</button></div>
+                <span class="mini-badge" id="today-rate-pill">0%</span>
+              </div>
+              <div class="task-list" id="task-list"></div>
+              <div class="action-row">
+                <button class="soft-action" data-view="addtask" type="button">新增任務</button>
+                <button class="primary-action" id="focus-button" type="button">開始 25 分鐘專注</button>
+                <button class="soft-action" id="add-negative" type="button">新增負面任務</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="dashboard-grid compact-home">
+            
+
+            <article class="panel">
+              <p class="eyebrow">Weather</p>
+              <h2>小島天氣</h2>
+              <div class="weather-card">
+                <strong id="weather-title">大雨</strong>
+                <span id="weather-note">任務還沒完成，小島正在下雨。</span>
+              </div>
+            </article>
+
+            <article class="panel">
+              <p class="eyebrow">Reward</p>
+              <h2>下一個道具</h2>
+              <div class="next-prop" id="next-prop">完成任務後解鎖小樹</div>
+              <button class="soft-action full-width" data-view="bag" type="button">查看背包</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="tasks-view">
+          <div class="two-col">
+            <article class="panel">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Quest Board</p>
+                  <h2>今日任務</h2>
+                </div>
+                <span class="mini-badge">完成 +10 星</span>
+              </div>
+              <div class="task-list" id="task-list-page"></div>
+              <div class="split-panel">
+                <p class="eyebrow">Auto Split</p>
+                <h3>任務自動拆解</h3>
+                <div class="breakdown-list" id="breakdown-list"></div>
+              </div>
+            </article>
+
+            <article class="panel">
+              <p class="eyebrow">Negative Quest</p>
+              <h2>黑色星星 / 負面任務</h2>
+              <p class="muted">如果「不要拖延、不要熬夜、不要亂滑手機」失敗，<span data-player-name>Fang</span> 會得到黑色星星。</p>
+              <div class="negative-list" id="negative-list"></div>
+              <div class="action-row stacked">
+                <button class="primary-action black-action" id="fail-negative" type="button">模擬負面任務失敗</button>
+                <button class="soft-action" id="remedy-negative" type="button">完成補救任務，消除黑星</button>
+              </div>
+              <div class="side-feature">
+                <p class="eyebrow">Deadline</p>
+                <h3>截止日倒數</h3>
+                <div class="deadline-list" id="deadline-list"></div>
+              </div>
+              <div class="side-feature">
+                <p class="eyebrow">Friends</p>
+                <h3>好友互相督促</h3>
+                <div class="friend-list" id="friend-list"></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="addtask-view">
+          <div class="two-col addtask-layout">
+            <article class="panel">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">New Quest</p>
+                  <h2>新增任務</h2>
+                </div>
+                <span class="mini-badge"><span data-player-name>Fang</span> 的排程</span>
+              </div>
+              <div class="task-form task-form-page">
+                <input id="new-task-title" type="text" placeholder="輸入新任務，例如：完成期末報告" />
+                <input id="new-task-date" type="date" aria-label="任務截止日期" />
+                <input id="new-task-deadline" type="text" placeholder="截止提醒，例如：剩 3 天" />
+                <select id="new-task-priority" aria-label="重要程度">
+                  <option value="高">高</option>
+                  <option value="中" selected>中</option>
+                  <option value="低">低</option>
+                </select>
+                <button class="primary-action" id="create-task" type="button">新增任務並自動拆解</button>
+              </div>
+              <div class="split-panel">
+                <p class="eyebrow">Preview</p>
+                <h3>新增後會自動變成小步驟</h3>
+                <div class="breakdown-list" id="new-task-preview">
+                  <label class="step-chip"><input type="checkbox" /> <span>1. 找出第一步</span></label>
+                  <label class="step-chip"><input type="checkbox" /> <span>2. 排入今日任務</span></label>
+                  <label class="step-chip"><input type="checkbox" /> <span>3. 加入截止日曆</span></label>
                 </div>
               </div>
             </article>
 
-            <div class="dashboard-grid">
-              <article class="panel">
-                <p class="eyebrow">Today</p>
-                <h2>今日任務</h2>
-                <div class="task-list" id="task-list"></div>
-              </article>
-              <article class="panel">
-                <p class="eyebrow">Buddy</p>
-                <h2>圓圓陪你</h2>
-                <div class="buddy-mini">🧸</div>
-                <button class="primary-action" id="focus-button" type="button">陪我專注 25 分鐘</button>
-              </article>
-            </div>
+            <article class="panel">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Task Calendar</p>
+                  <h2>任務日期日曆</h2>
+                </div>
+                <span class="mini-badge">6 月</span>
+              </div>
+              <div class="task-calendar-grid" id="task-calendar-grid"></div>
+            </article>
           </div>
         </section>
 
-        <section class="view" id="tasks-view"><article class="panel"><h2>任務清單</h2><div class="task-list" id="deadline-list"></div></article></section>
-        <section class="view" id="addtask-view"><article class="panel"><h2>新增任務</h2><input id="new-task-title" placeholder="輸入任務"/><input id="new-task-date" type="date"/><button class="primary-action" id="create-task" type="button">新增任務 ⭐</button></article></section>
-        <section class="view" id="focus-view"><article class="panel"><h2>專注模式</h2><div class="focus-timer" id="focus-timer">25:00</div><button class="primary-action" id="focus-page-button" type="button">開始專注</button></article></section>
-        <section class="view" id="jar-view"><article class="panel"><h2>星星瓶 ⭐</h2><div class="big-jar">⭐💫🌟<br><strong id="jar-total">0</strong></div></article></section>
-        <section class="view" id="friends-view"><article class="panel"><h2>好友小島 💌</h2><div id="friend-list"></div></article></section>
-        <section class="view" id="buddy-view"><article class="panel"><h2>圓圓聊天 🧸</h2><div id="chat-list"></div><input id="chat-input" placeholder="跟圓圓說話"/><button id="send-chat" class="primary-action">送出</button></article></section>
-        <section class="view" id="bag-view"><article class="panel"><h2>背包 🎒</h2><div id="item-list"></div></article></section>
-        <section class="view" id="stats-view"><article class="panel"><h2>統計 📊</h2><div id="calendar-grid"></div></article></section>
+        <section class="view" id="focus-view">
+          <div class="two-col focus-layout">
+            <article class="panel">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Focus Timer</p>
+                  <h2>專注計時器</h2>
+                </div>
+                <span class="mini-badge">完成 +3 進步星</span>
+              </div>
+              <div class="focus-timer focus-timer-large" id="focus-timer">25:00</div>
+              <div class="focus-mode-row">
+                <button class="soft-action focus-mode active" data-focus-minutes="25" type="button">25 分鐘</button>
+                <button class="soft-action focus-mode" data-focus-minutes="15" type="button">15 分鐘</button>
+                <button class="soft-action focus-mode" data-focus-minutes="5" type="button">5 分鐘</button>
+              </div>
+              <button class="primary-action full-width" id="focus-page-button" type="button">圓圓陪讀開始</button>
+            </article>
+
+            <article class="panel">
+              <p class="eyebrow">Study Buddy</p>
+              <h2>圓圓陪讀狀態</h2>
+              <div class="focus-buddy-card">
+                <svg viewBox="0 0 120 124" width="86" height="86" aria-hidden="true">
+  <defs>
+    <radialGradient id="bFocus-fur" cx="38%" cy="28%" r="88%">
+      <stop offset="0%" stop-color="#fff7e6"/><stop offset="50%" stop-color="#f4dcab"/><stop offset="100%" stop-color="#e3c084"/>
+    </radialGradient>
+    <radialGradient id="bFocus-furB" cx="42%" cy="22%" r="92%">
+      <stop offset="0%" stop-color="#fdefce"/><stop offset="100%" stop-color="#e8c98c"/>
+    </radialGradient>
+    <radialGradient id="bFocus-muz" cx="45%" cy="32%" r="80%">
+      <stop offset="0%" stop-color="#fffaf2"/><stop offset="100%" stop-color="#f6e4c2"/>
+    </radialGradient>
+    <radialGradient id="bFocus-belly" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#fffaf0"/><stop offset="100%" stop-color="#f7e7c8"/>
+    </radialGradient>
+    <linearGradient id="bFocus-scarf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff9d86"/><stop offset="100%" stop-color="#f0715c"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="60" cy="116" rx="33" ry="6.5" fill="#7c5c34" opacity="0.16"/>
+
+  <!-- 身體:毛邊陰影層 + 主體 -->
+  <path d="M60.0,55.6 Q62.5,56.6 64.9,57.0 Q67.4,57.4 70.2,56.6 Q72.1,58.9 74.3,60.0 Q76.5,61.1 79.2,61.6 Q80.5,64.0 81.9,66.1 Q84.0,67.5 86.4,68.8 Q86.9,71.5 87.8,73.8 Q89.1,75.9 90.9,78.0 Q90.6,80.6 90.9,83.1 Q91.4,85.5 92.0,88.0 Q91.4,90.5 90.9,92.9 Q90.6,95.4 90.8,98.0 Q89.1,100.1 87.7,102.1 Q86.9,104.5 86.3,107.1 Q84.0,108.5 82.2,110.2 Q80.5,112.0 78.7,113.8 Q76.5,114.9 74.2,115.8 Q72.1,117.1 70.0,118.9 Q67.4,118.6 64.9,118.8 Q62.5,119.4 60.0,119.9 Q57.5,119.4 55.1,118.8 Q52.6,118.6 50.0,118.7 Q47.9,117.1 45.8,115.8 Q43.5,114.9 41.1,114.0 Q39.5,112.0 38.0,110.0 Q36.0,108.5 34.0,106.9 Q33.1,104.5 32.1,102.2 Q30.9,100.1 29.4,97.9 Q29.4,95.4 29.0,92.9 Q28.6,90.5 27.8,88.0 Q28.6,85.5 28.9,83.1 Q29.4,80.6 29.5,78.1 Q30.9,75.9 32.0,73.7 Q33.1,71.5 33.4,68.7 Q36.0,67.5 37.9,65.9 Q39.5,64.0 41.0,61.9 Q43.5,61.1 45.7,59.9 Q47.9,58.9 50.2,57.7 Q52.6,57.4 55.1,56.9 Q57.5,56.6 60.0,55.6 Z" fill="#e3c489" transform="translate(0,1.5)"/>
+  <path d="M60.0,55.6 Q62.5,56.6 64.9,57.0 Q67.4,57.4 70.2,56.6 Q72.1,58.9 74.3,60.0 Q76.5,61.1 79.2,61.6 Q80.5,64.0 81.9,66.1 Q84.0,67.5 86.4,68.8 Q86.9,71.5 87.8,73.8 Q89.1,75.9 90.9,78.0 Q90.6,80.6 90.9,83.1 Q91.4,85.5 92.0,88.0 Q91.4,90.5 90.9,92.9 Q90.6,95.4 90.8,98.0 Q89.1,100.1 87.7,102.1 Q86.9,104.5 86.3,107.1 Q84.0,108.5 82.2,110.2 Q80.5,112.0 78.7,113.8 Q76.5,114.9 74.2,115.8 Q72.1,117.1 70.0,118.9 Q67.4,118.6 64.9,118.8 Q62.5,119.4 60.0,119.9 Q57.5,119.4 55.1,118.8 Q52.6,118.6 50.0,118.7 Q47.9,117.1 45.8,115.8 Q43.5,114.9 41.1,114.0 Q39.5,112.0 38.0,110.0 Q36.0,108.5 34.0,106.9 Q33.1,104.5 32.1,102.2 Q30.9,100.1 29.4,97.9 Q29.4,95.4 29.0,92.9 Q28.6,90.5 27.8,88.0 Q28.6,85.5 28.9,83.1 Q29.4,80.6 29.5,78.1 Q30.9,75.9 32.0,73.7 Q33.1,71.5 33.4,68.7 Q36.0,67.5 37.9,65.9 Q39.5,64.0 41.0,61.9 Q43.5,61.1 45.7,59.9 Q47.9,58.9 50.2,57.7 Q52.6,57.4 55.1,56.9 Q57.5,56.6 60.0,55.6 Z" fill="url(#bFocus-furB)"/>
+  <circle cx="62.1" cy="66.8" r="3.3" fill="#f0d9a6" opacity="0.4"/><circle cx="64.3" cy="69.7" r="2.5" fill="#f0d9a6" opacity="0.4"/><circle cx="36.4" cy="90.2" r="2.6" fill="#f0d9a6" opacity="0.4"/><circle cx="82.6" cy="84.1" r="2.4" fill="#f0d9a6" opacity="0.4"/><circle cx="38.3" cy="100.0" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="39.9" cy="103.8" r="3.3" fill="#f0d9a6" opacity="0.4"/><circle cx="80.6" cy="104.8" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="56.3" cy="115.8" r="2.4" fill="#f0d9a6" opacity="0.4"/><circle cx="81.0" cy="95.2" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="42.8" cy="105.3" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="59.6" cy="68.6" r="2.2" fill="#f0d9a6" opacity="0.4"/><circle cx="80.9" cy="91.8" r="2.4" fill="#f0d9a6" opacity="0.4"/>
+  <ellipse cx="60" cy="91" rx="18" ry="15" fill="url(#bFocus-belly)"/>
+
+  <!-- 腿 -->
+  <path d="M42.0,96.1 Q44.0,96.6 45.9,96.9 Q47.8,97.4 49.9,97.7 Q51.0,99.0 52.1,100.1 Q53.4,101.1 54.8,102.2 Q54.6,103.7 54.8,105.0 Q54.6,106.3 54.7,107.8 Q53.4,108.9 52.2,109.9 Q51.0,111.0 49.6,112.0 Q47.8,112.6 45.9,113.1 Q44.0,113.4 42.0,113.9 Q40.0,113.4 38.1,113.1 Q36.2,112.6 34.1,112.3 Q33.0,111.0 31.8,110.0 Q30.6,108.9 29.2,107.8 Q29.4,106.3 29.2,105.0 Q29.4,103.7 29.6,102.3 Q30.6,101.1 31.7,100.0 Q33.0,99.0 34.3,97.9 Q36.2,97.4 38.1,96.9 Q40.0,96.6 42.0,96.1 Z" fill="url(#bFocus-furB)"/>
+  <path d="M78.0,96.1 Q80.0,96.6 81.9,97.0 Q83.8,97.4 85.8,97.9 Q87.0,99.0 88.3,100.0 Q89.4,101.1 90.7,102.2 Q90.6,103.7 90.5,105.0 Q90.6,106.3 90.5,107.7 Q89.4,108.9 88.1,109.9 Q87.0,111.0 86.0,112.3 Q83.8,112.6 81.9,113.0 Q80.0,113.4 78.0,114.0 Q76.0,113.4 74.1,113.1 Q72.2,112.6 70.3,112.0 Q69.0,111.0 67.7,110.0 Q66.6,108.9 65.6,107.7 Q65.4,106.3 65.2,105.0 Q65.4,103.7 65.6,102.3 Q66.6,101.1 67.6,100.0 Q69.0,99.0 70.3,97.9 Q72.2,97.4 74.1,97.0 Q76.0,96.6 78.0,96.1 Z" fill="url(#bFocus-furB)"/>
+  <ellipse cx="40" cy="106" rx="6" ry="4.5" fill="#fdf3da"/>
+  <ellipse cx="80" cy="106" rx="6" ry="4.5" fill="#fdf3da"/>
+
+  <!-- 手 -->
+  <g transform="rotate(15 32 82)"><path d="M32.0,70.0 Q33.3,70.3 34.6,71.0 Q35.9,71.5 37.4,71.8 Q38.1,73.6 38.9,75.1 Q39.7,76.6 40.5,78.2 Q40.5,80.2 40.5,82.0 Q40.5,83.8 40.7,85.9 Q39.7,87.4 39.0,89.0 Q38.1,90.4 37.2,91.8 Q35.9,92.5 34.6,93.1 Q33.3,93.7 32.0,94.5 Q30.7,93.7 29.4,93.1 Q28.1,92.5 26.6,92.2 Q25.9,90.4 25.2,88.8 Q24.3,87.4 23.3,85.9 Q23.5,83.8 23.4,82.0 Q23.5,80.2 23.5,78.2 Q24.3,76.6 25.0,75.0 Q25.9,73.6 26.6,71.8 Q28.1,71.5 29.4,70.8 Q30.7,70.3 32.0,70.0 Z" fill="url(#bFocus-furB)"/></g>
+  <g transform="rotate(-15 88 82)"><path d="M88.0,69.6 Q89.3,70.3 90.7,70.7 Q91.9,71.5 93.3,72.0 Q94.1,73.6 94.8,75.2 Q95.7,76.6 96.7,78.1 Q96.5,80.2 96.5,82.0 Q96.5,83.8 96.4,85.7 Q95.7,87.4 95.0,89.0 Q94.1,90.4 93.4,92.2 Q91.9,92.5 90.6,93.0 Q89.3,93.7 88.0,94.5 Q86.7,93.7 85.3,93.2 Q84.1,92.5 82.7,92.1 Q81.9,90.4 81.1,88.9 Q80.3,87.4 79.3,85.9 Q79.5,83.8 79.6,82.0 Q79.5,80.2 79.3,78.1 Q80.3,76.6 81.1,75.1 Q81.9,73.6 82.7,72.0 Q84.1,71.5 85.3,70.7 Q86.7,70.3 88.0,69.6 Z" fill="url(#bFocus-furB)"/></g>
+
+  <!-- 星星徽章 -->
+  <path d="M60 85 l2.6 5.2 5.8 0.6 -4.3 3.9 1.2 5.7 -5.3 -2.9 -5.3 2.9 1.2 -5.7 -4.3 -3.9 5.8 -0.6 Z" fill="#ffd45e" stroke="#e8a93a" stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- 耳朵 -->
+  <path d="M38.0,9.6 Q39.9,10.3 41.6,10.8 Q43.4,11.4 45.4,11.8 Q46.4,13.6 47.6,15.0 Q48.6,16.6 50.0,18.1 Q49.7,20.1 49.9,22.0 Q49.7,23.9 49.5,25.7 Q48.6,27.4 47.4,28.8 Q46.4,30.4 45.2,31.8 Q43.4,32.6 41.6,33.1 Q39.9,33.7 38.0,34.7 Q36.1,33.7 34.4,33.1 Q32.6,32.6 30.8,31.9 Q29.6,30.4 28.4,29.0 Q27.4,27.4 26.0,25.9 Q26.3,23.9 26.1,22.0 Q26.3,20.1 26.3,18.2 Q27.4,16.6 28.5,15.1 Q29.6,13.6 30.6,11.9 Q32.6,11.4 34.4,10.9 Q36.1,10.3 38.0,9.6 Z" fill="#e3c489" transform="translate(0,1)"/>
+  <path d="M38.0,9.6 Q39.9,10.3 41.6,10.8 Q43.4,11.4 45.4,11.8 Q46.4,13.6 47.6,15.0 Q48.6,16.6 50.0,18.1 Q49.7,20.1 49.9,22.0 Q49.7,23.9 49.5,25.7 Q48.6,27.4 47.4,28.8 Q46.4,30.4 45.2,31.8 Q43.4,32.6 41.6,33.1 Q39.9,33.7 38.0,34.7 Q36.1,33.7 34.4,33.1 Q32.6,32.6 30.8,31.9 Q29.6,30.4 28.4,29.0 Q27.4,27.4 26.0,25.9 Q26.3,23.9 26.1,22.0 Q26.3,20.1 26.3,18.2 Q27.4,16.6 28.5,15.1 Q29.6,13.6 30.6,11.9 Q32.6,11.4 34.4,10.9 Q36.1,10.3 38.0,9.6 Z" fill="url(#bFocus-fur)"/>
+  <path d="M82.0,9.7 Q83.9,10.3 85.7,10.7 Q87.4,11.4 89.4,11.8 Q90.4,13.6 91.4,15.2 Q92.6,16.6 94.0,18.1 Q93.7,20.1 93.8,22.0 Q93.7,23.9 93.9,25.9 Q92.6,27.4 91.5,28.9 Q90.4,30.4 89.2,31.9 Q87.4,32.6 85.6,33.2 Q83.9,33.7 82.0,34.5 Q80.1,33.7 78.3,33.3 Q76.6,32.6 74.6,32.2 Q73.6,30.4 72.3,29.0 Q71.4,27.4 70.0,25.9 Q70.3,23.9 70.1,22.0 Q70.3,20.1 69.9,18.1 Q71.4,16.6 72.4,15.0 Q73.6,13.6 74.7,12.0 Q76.6,11.4 78.4,10.9 Q80.1,10.3 82.0,9.7 Z" fill="#e3c489" transform="translate(0,1)"/>
+  <path d="M82.0,9.7 Q83.9,10.3 85.7,10.7 Q87.4,11.4 89.4,11.8 Q90.4,13.6 91.4,15.2 Q92.6,16.6 94.0,18.1 Q93.7,20.1 93.8,22.0 Q93.7,23.9 93.9,25.9 Q92.6,27.4 91.5,28.9 Q90.4,30.4 89.2,31.9 Q87.4,32.6 85.6,33.2 Q83.9,33.7 82.0,34.5 Q80.1,33.7 78.3,33.3 Q76.6,32.6 74.6,32.2 Q73.6,30.4 72.3,29.0 Q71.4,27.4 70.0,25.9 Q70.3,23.9 70.1,22.0 Q70.3,20.1 69.9,18.1 Q71.4,16.6 72.4,15.0 Q73.6,13.6 74.7,12.0 Q76.6,11.4 78.4,10.9 Q80.1,10.3 82.0,9.7 Z" fill="url(#bFocus-fur)"/>
+  <circle cx="38" cy="23" r="5" fill="#f0cf98"/>
+  <circle cx="82" cy="23" r="5" fill="#f0cf98"/>
+
+  <!-- 頭:毛邊陰影 + 主體 -->
+  <path d="M60.0,9.9 Q61.9,10.6 63.8,11.2 Q65.8,11.1 68.1,10.3 Q69.5,12.2 71.3,13.1 Q73.1,13.6 75.2,14.0 Q76.4,15.6 77.7,17.1 Q79.4,18.0 81.9,18.3 Q82.1,20.7 82.9,22.4 Q84.3,23.7 86.1,25.0 Q86.1,27.1 86.7,28.9 Q87.4,30.6 89.0,32.2 Q88.2,34.3 88.0,36.2 Q88.5,38.0 89.5,39.9 Q88.2,41.7 87.9,43.6 Q87.4,45.4 87.9,47.5 Q86.1,48.9 85.1,50.5 Q84.3,52.3 84.0,54.3 Q82.1,55.3 80.6,56.6 Q79.4,58.0 78.8,60.2 Q76.4,60.4 74.8,61.4 Q73.1,62.4 71.8,64.1 Q69.5,63.8 67.6,64.2 Q65.8,64.9 64.0,66.3 Q61.9,65.4 60.0,65.5 Q58.1,65.4 56.0,65.8 Q54.2,64.9 52.4,64.3 Q50.5,63.8 48.4,63.7 Q46.9,62.4 45.4,61.2 Q43.6,60.4 41.2,60.2 Q40.6,58.0 39.5,56.4 Q37.9,55.3 35.9,54.4 Q35.7,52.3 34.6,50.7 Q33.9,48.9 32.9,47.3 Q32.6,45.4 32.3,43.5 Q31.8,41.7 30.7,39.9 Q31.5,38.0 31.6,36.1 Q31.8,34.3 30.9,32.2 Q32.6,30.6 33.4,28.9 Q33.9,27.1 33.5,24.8 Q35.7,23.7 36.7,22.2 Q37.9,20.7 38.8,19.0 Q40.6,18.0 42.2,17.0 Q43.6,15.6 45.0,14.2 Q46.9,13.6 48.8,13.2 Q50.5,12.2 52.1,10.8 Q54.2,11.1 56.1,10.7 Q58.1,10.6 60.0,9.9 Z" fill="#e3c489" transform="translate(0,1.5)"/>
+  <path d="M60.0,9.9 Q61.9,10.6 63.8,11.2 Q65.8,11.1 68.1,10.3 Q69.5,12.2 71.3,13.1 Q73.1,13.6 75.2,14.0 Q76.4,15.6 77.7,17.1 Q79.4,18.0 81.9,18.3 Q82.1,20.7 82.9,22.4 Q84.3,23.7 86.1,25.0 Q86.1,27.1 86.7,28.9 Q87.4,30.6 89.0,32.2 Q88.2,34.3 88.0,36.2 Q88.5,38.0 89.5,39.9 Q88.2,41.7 87.9,43.6 Q87.4,45.4 87.9,47.5 Q86.1,48.9 85.1,50.5 Q84.3,52.3 84.0,54.3 Q82.1,55.3 80.6,56.6 Q79.4,58.0 78.8,60.2 Q76.4,60.4 74.8,61.4 Q73.1,62.4 71.8,64.1 Q69.5,63.8 67.6,64.2 Q65.8,64.9 64.0,66.3 Q61.9,65.4 60.0,65.5 Q58.1,65.4 56.0,65.8 Q54.2,64.9 52.4,64.3 Q50.5,63.8 48.4,63.7 Q46.9,62.4 45.4,61.2 Q43.6,60.4 41.2,60.2 Q40.6,58.0 39.5,56.4 Q37.9,55.3 35.9,54.4 Q35.7,52.3 34.6,50.7 Q33.9,48.9 32.9,47.3 Q32.6,45.4 32.3,43.5 Q31.8,41.7 30.7,39.9 Q31.5,38.0 31.6,36.1 Q31.8,34.3 30.9,32.2 Q32.6,30.6 33.4,28.9 Q33.9,27.1 33.5,24.8 Q35.7,23.7 36.7,22.2 Q37.9,20.7 38.8,19.0 Q40.6,18.0 42.2,17.0 Q43.6,15.6 45.0,14.2 Q46.9,13.6 48.8,13.2 Q50.5,12.2 52.1,10.8 Q54.2,11.1 56.1,10.7 Q58.1,10.6 60.0,9.9 Z" fill="url(#bFocus-fur)"/>
+  <circle cx="46.9" cy="19.6" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="83.8" cy="43.5" r="3.4" fill="#f0d9a6" opacity="0.4"/><circle cx="74.3" cy="22.8" r="2.8" fill="#f0d9a6" opacity="0.4"/><circle cx="75.9" cy="23.0" r="2.8" fill="#f0d9a6" opacity="0.4"/><circle cx="72.4" cy="21.8" r="3.0" fill="#f0d9a6" opacity="0.4"/><circle cx="79.7" cy="37.1" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="38.0" cy="32.5" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="35.5" cy="38.5" r="2.2" fill="#f0d9a6" opacity="0.4"/><circle cx="61.2" cy="58.9" r="2.5" fill="#f0d9a6" opacity="0.4"/><circle cx="63.5" cy="18.4" r="3.2" fill="#f0d9a6" opacity="0.4"/>
+  <!-- 頭頂呆毛 -->
+  <path d="M57 13 q3 -8 5 -1 q3 -6 3 1" stroke="#e3c084" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <!-- 絨毛紋理 -->
+  <path d="M39 42 q-2.5 3 -0.5 6 M81 42 q2.5 3 0.5 6 M45 26 q-2.5 2 -1.5 5 M75 26 q2.5 2 1.5 5" stroke="#ecd4a2" stroke-width="1.3" fill="none" opacity="0.55"/>
+
+  <!-- 圍巾 -->
+  <path d="M38 55 q22 12 44 0 l-2 9 q-20 10 -40 0 Z" fill="url(#bFocus-scarf)"/>
+  <path d="M70 61 l6 16 q1 4 -3 5 l-5 1 q-3 0.5 -3 -3 l1 -17 Z" fill="url(#bFocus-scarf)"/>
+  <path d="M68 79 h8 M69 83 h7" stroke="#d85a46" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- 臉 -->
+  <ellipse cx="60" cy="45" rx="13" ry="10" fill="url(#bFocus-muz)"/>
+  <path d="M56 42 q4 -3.4 8 0 q-1 3.6 -4 3.6 q-3 0 -4 -3.6 Z" fill="#8a5c3a"/>
+  <path d="M60 46 v3 M60 49 q-3 3 -6 1 M60 49 q3 3 6 1" stroke="#8a5c3a" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+  <circle cx="48" cy="36" r="3.1" fill="#4a3424"/>
+  <circle cx="72" cy="36" r="3.1" fill="#4a3424"/>
+  <circle cx="49.2" cy="34.8" r="1.1" fill="#fff"/>
+  <circle cx="73.2" cy="34.8" r="1.1" fill="#fff"/>
+  <ellipse cx="42" cy="44" rx="4.6" ry="2.9" fill="#ffb9a0" opacity="0.7"/>
+  <ellipse cx="78" cy="44" rx="4.6" ry="2.9" fill="#ffb9a0" opacity="0.7"/>
+</svg>
+                <div>
+                  <strong><span data-player-name>Fang</span> 專注時，圓圓會坐在旁邊陪讀。</strong>
+                  <span>計時完成後會獲得進步星星，並存進星星瓶。</span>
+                </div>
+              </div>
+              <div class="deadline-list" id="focus-task-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="jar-view">
+          <div class="jar-page-grid">
+            <article class="panel jar-hero night">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Star Collection</p>
+                  <h2><span data-player-name>Fang</span> 的星星瓶</h2>
+                </div>
+                <span class="mini-badge">今日 +<span id="today-stars">0</span></span>
+              </div>
+              <div class="jar-stats-row">
+                <div><span>星星總數</span><strong id="jar-total">0</strong></div>
+                <div><span>普通星星</span><strong id="normal-star-count">0</strong></div>
+                <div><span>黑色星星</span><strong id="black-star-count">0</strong></div>
+              </div>
+              <div class="star-type-tabs" id="star-type-tabs">
+                <button class="active" data-star-filter="all" type="button">全部</button>
+                <button data-star-filter="normal" type="button">普通星星</button>
+                <button data-star-filter="progress" type="button">進步星星</button>
+                <button data-star-filter="lucky" type="button">幸運星星</button>
+                <button data-star-filter="black" type="button">黑色星星</button>
+              </div>
+              <div class="big-jar-stage">
+                <div class="bottle dreamy big-bottle" id="big-jar">
+                  <svg class="bottle-glass" viewBox="0 0 100 150" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <radialGradient id="gGlow-big-jar" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#ffdcb0" stop-opacity="0.75"/>
+                        <stop offset="55%" stop-color="#ffc49a" stop-opacity="0.28"/>
+                        <stop offset="100%" stop-color="#ffc49a" stop-opacity="0"/>
+                      </radialGradient>
+                      <linearGradient id="gGlassBody-big-jar" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.22"/>
+                        <stop offset="14%" stop-color="#ffffff" stop-opacity="0.04"/>
+                        <stop offset="50%" stop-color="#dfeeff" stop-opacity="0.02"/>
+                        <stop offset="86%" stop-color="#ffffff" stop-opacity="0.05"/>
+                        <stop offset="100%" stop-color="#ffffff" stop-opacity="0.2"/>
+                      </linearGradient>
+                      <linearGradient id="gGlassEdge-big-jar" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#eaf4ff" stop-opacity="0.95"/>
+                        <stop offset="45%" stop-color="#bcd4f2" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="#d8e8fb" stop-opacity="0.85"/>
+                      </linearGradient>
+                    </defs>
+                    <!-- 玻璃瓶塞(裝著一小片星空) -->
+                    <g class="stopper">
+                      <path d="M34 3 q16 -4 32 0 l-2 11 q-14 3 -28 0 Z" fill="rgba(230,242,255,0.30)" stroke="url(#gGlassEdge-big-jar)" stroke-width="1.8"/>
+                      <circle cx="42" cy="8" r="1" fill="#9fd8ff"/><circle cx="50" cy="6" r="1.2" fill="#ffd9f2"/><circle cx="58" cy="9" r="0.9" fill="#fff3b0"/>
+                      <rect x="38" y="14" width="24" height="5" rx="2" fill="rgba(214,230,250,0.4)" stroke="#cfe2f8" stroke-opacity="0.8" stroke-width="1.2"/>
+                    </g>
+                    <!-- 瓶口環:玻璃厚度 -->
+                    <rect x="28" y="19" width="44" height="7" rx="3.5" fill="rgba(235,245,255,0.18)" stroke="url(#gGlassEdge-big-jar)" stroke-width="1.8"/>
+                    <ellipse cx="50" cy="22.5" rx="17" ry="2.6" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="1.2"/>
+                    <!-- 瓶身:透明玻璃 -->
+                    <path d="M29 26 q-11 5 -11 18 v82 q0 20 20 20 h24 q20 0 20 -20 v-82 q0 -13 -11 -18 Z"
+                          fill="url(#gGlassBody-big-jar)" stroke="url(#gGlassEdge-big-jar)" stroke-width="2.2"/>
+                    <!-- 玻璃厚度內緣 -->
+                    <path d="M31.5 28 q-10.5 5 -10.5 16.5 v81 q0 17.5 17.5 17.5 h23 q17.5 0 17.5 -17.5 v-81 q0 -11.5 -10.5 -16.5 Z"
+                          fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1.1"/>
+                    <!-- 瓶底暖光 -->
+                    <ellipse cx="50" cy="128" rx="29" ry="15" fill="url(#gGlow-big-jar)"/>
+                    <!-- 瓶底厚玻璃反光 -->
+                    <ellipse cx="50" cy="138" rx="22" ry="4.5" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>
+                    <!-- 左側主高光帶 -->
+                    <path d="M25 48 q-4 36 1 72" fill="none" stroke="#ffffff" stroke-opacity="0.65" stroke-width="5" stroke-linecap="round"/>
+                    <path d="M31 40 q-2 12 -1 22" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2.4" stroke-linecap="round"/>
+                    <!-- 右側細高光 -->
+                    <path d="M76 56 q3 30 -1 58" fill="none" stroke="#ffffff" stroke-opacity="0.32" stroke-width="2.2" stroke-linecap="round"/>
+                    <!-- 柔和的環境色映在玻璃上 -->
+                    <path d="M29 26 q-11 5 -11 18 v40" fill="none" stroke="#aee4ff" stroke-opacity="0.35" stroke-width="2.4" stroke-linecap="round"/>
+                    <path d="M71 26 q11 5 11 18 v40" fill="none" stroke="#ffc6e6" stroke-opacity="0.32" stroke-width="2.4" stroke-linecap="round"/>
+                  </svg>
+                  <canvas class="bottle-canvas" id="big-jar-canvas"></canvas>
+                  <span class="sp s1">✦</span><span class="sp s2">✦</span><span class="sp s3">✧</span>
+                  <span class="sp s4">✦</span><span class="sp s5">✧</span>
+                </div>
+              </div>
+              <div class="jar-memories">
+                <p class="eyebrow">Memories</p>
+                <h3>瓶中的回憶</h3>
+                <p class="muted-light">每顆星星都是一段完成的紀錄,瓶子越滿,回憶越多。</p>
+                <div class="memory-list" id="memory-list"></div>
+              </div>
+              <div class="action-row">
+                <button class="primary-action" id="feed-bear-from-jar" type="button">餵星星給圓圓</button>
+                <button class="soft-action" data-view="bag" type="button">兌換小島道具</button>
+              </div>
+            </article>
+
+            <article class="panel">
+              <p class="eyebrow">Black Star</p>
+              <h2>黑色星星影響</h2>
+              <div class="black-star-demo">
+                <span class="black-star-icon"></span>
+                <p>黑星累積太多，小島會下大雨，圓圓會變難過。完成補救任務可以讓黑星碎成光點。</p>
+              </div>
+              <button class="soft-action full-width" id="clean-black-stars" type="button">消除黑色星星</button>
+            </article>
+          </div>
+        </section>
+
+        
+        <section class="view" id="friends-view">
+          <div class="friends-grid">
+            <article class="panel night social-mine">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Together</p>
+                  <h2>我們一起點亮星星</h2>
+                </div>
+                <button class="soft-action ghost" id="social-newday" type="button">模擬隔天</button>
+              </div>
+              <p class="muted-light">完成今日共享任務就能點亮一顆星星，朋友都看得到。沒完成的星星會變暗，隔天要重新點亮。</p>
+              <div class="shared-task-list" id="shared-task-list"></div>
+              <div class="my-star-row" id="my-star-row" aria-label="我的今日星星"></div>
+            </article>
+
+            <article class="panel social-friends">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Buddy Watch</p>
+                  <h2>好友任務進度</h2>
+                </div>
+                <span class="mini-badge">互相監督中</span>
+              </div>
+              <div class="friend-progress-list" id="friend-progress-list"></div>
+            </article>
+
+            <article class="panel social-feed">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Check-in Feed</p>
+                  <h2>打卡動態</h2>
+                </div>
+                <span class="mini-badge">拍照＝完成證明</span>
+              </div>
+              <div class="feed-list" id="feed-list"></div>
+            </article>
+          </div>
+          <input type="file" id="proof-photo-input" accept="image/*" capture="environment" hidden />
+        </section>
+
+        <section class="view" id="buddy-view">
+          <div class="buddy-redesign-grid">
+            <article class="panel buddy-stage-card">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Daily Companion</p>
+                  <h2>圓圓陪你</h2>
+                </div>
+                <span class="mini-badge">狀態：<span id="buddy-state">待機</span></span>
+              </div>
+              <div class="buddy-stage companion-stage" id="buddy-stage">
+                <span class="feed-star-fx"></span>
+                <span class="book-fx">BOOK</span>
+                <span class="heart-fx h1"></span>
+                <span class="heart-fx h2"></span>
+                <span class="umbrella-fx"></span>
+                <span class="hug-fx"></span>
+                <span class="sleep-fx">Zzz</span>
+                <button class="buddy-big" id="buddy-big" type="button" aria-label="點擊圓圓">
+                  <svg viewBox="0 0 120 124" width="150" height="150" aria-hidden="true">
+  <defs>
+    <radialGradient id="bChat-fur" cx="38%" cy="28%" r="88%">
+      <stop offset="0%" stop-color="#fff7e6"/><stop offset="50%" stop-color="#f4dcab"/><stop offset="100%" stop-color="#e3c084"/>
+    </radialGradient>
+    <radialGradient id="bChat-furB" cx="42%" cy="22%" r="92%">
+      <stop offset="0%" stop-color="#fdefce"/><stop offset="100%" stop-color="#e8c98c"/>
+    </radialGradient>
+    <radialGradient id="bChat-muz" cx="45%" cy="32%" r="80%">
+      <stop offset="0%" stop-color="#fffaf2"/><stop offset="100%" stop-color="#f6e4c2"/>
+    </radialGradient>
+    <radialGradient id="bChat-belly" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#fffaf0"/><stop offset="100%" stop-color="#f7e7c8"/>
+    </radialGradient>
+    <linearGradient id="bChat-scarf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff9d86"/><stop offset="100%" stop-color="#f0715c"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="60" cy="116" rx="33" ry="6.5" fill="#7c5c34" opacity="0.16"/>
+
+  <!-- 身體:毛邊陰影層 + 主體 -->
+  <path d="M60.0,55.6 Q62.5,56.6 64.9,57.0 Q67.4,57.4 70.2,56.6 Q72.1,58.9 74.3,60.0 Q76.5,61.1 79.2,61.6 Q80.5,64.0 81.9,66.1 Q84.0,67.5 86.4,68.8 Q86.9,71.5 87.8,73.8 Q89.1,75.9 90.9,78.0 Q90.6,80.6 90.9,83.1 Q91.4,85.5 92.0,88.0 Q91.4,90.5 90.9,92.9 Q90.6,95.4 90.8,98.0 Q89.1,100.1 87.7,102.1 Q86.9,104.5 86.3,107.1 Q84.0,108.5 82.2,110.2 Q80.5,112.0 78.7,113.8 Q76.5,114.9 74.2,115.8 Q72.1,117.1 70.0,118.9 Q67.4,118.6 64.9,118.8 Q62.5,119.4 60.0,119.9 Q57.5,119.4 55.1,118.8 Q52.6,118.6 50.0,118.7 Q47.9,117.1 45.8,115.8 Q43.5,114.9 41.1,114.0 Q39.5,112.0 38.0,110.0 Q36.0,108.5 34.0,106.9 Q33.1,104.5 32.1,102.2 Q30.9,100.1 29.4,97.9 Q29.4,95.4 29.0,92.9 Q28.6,90.5 27.8,88.0 Q28.6,85.5 28.9,83.1 Q29.4,80.6 29.5,78.1 Q30.9,75.9 32.0,73.7 Q33.1,71.5 33.4,68.7 Q36.0,67.5 37.9,65.9 Q39.5,64.0 41.0,61.9 Q43.5,61.1 45.7,59.9 Q47.9,58.9 50.2,57.7 Q52.6,57.4 55.1,56.9 Q57.5,56.6 60.0,55.6 Z" fill="#e3c489" transform="translate(0,1.5)"/>
+  <path d="M60.0,55.6 Q62.5,56.6 64.9,57.0 Q67.4,57.4 70.2,56.6 Q72.1,58.9 74.3,60.0 Q76.5,61.1 79.2,61.6 Q80.5,64.0 81.9,66.1 Q84.0,67.5 86.4,68.8 Q86.9,71.5 87.8,73.8 Q89.1,75.9 90.9,78.0 Q90.6,80.6 90.9,83.1 Q91.4,85.5 92.0,88.0 Q91.4,90.5 90.9,92.9 Q90.6,95.4 90.8,98.0 Q89.1,100.1 87.7,102.1 Q86.9,104.5 86.3,107.1 Q84.0,108.5 82.2,110.2 Q80.5,112.0 78.7,113.8 Q76.5,114.9 74.2,115.8 Q72.1,117.1 70.0,118.9 Q67.4,118.6 64.9,118.8 Q62.5,119.4 60.0,119.9 Q57.5,119.4 55.1,118.8 Q52.6,118.6 50.0,118.7 Q47.9,117.1 45.8,115.8 Q43.5,114.9 41.1,114.0 Q39.5,112.0 38.0,110.0 Q36.0,108.5 34.0,106.9 Q33.1,104.5 32.1,102.2 Q30.9,100.1 29.4,97.9 Q29.4,95.4 29.0,92.9 Q28.6,90.5 27.8,88.0 Q28.6,85.5 28.9,83.1 Q29.4,80.6 29.5,78.1 Q30.9,75.9 32.0,73.7 Q33.1,71.5 33.4,68.7 Q36.0,67.5 37.9,65.9 Q39.5,64.0 41.0,61.9 Q43.5,61.1 45.7,59.9 Q47.9,58.9 50.2,57.7 Q52.6,57.4 55.1,56.9 Q57.5,56.6 60.0,55.6 Z" fill="url(#bChat-furB)"/>
+  <circle cx="62.1" cy="66.8" r="3.3" fill="#f0d9a6" opacity="0.4"/><circle cx="64.3" cy="69.7" r="2.5" fill="#f0d9a6" opacity="0.4"/><circle cx="36.4" cy="90.2" r="2.6" fill="#f0d9a6" opacity="0.4"/><circle cx="82.6" cy="84.1" r="2.4" fill="#f0d9a6" opacity="0.4"/><circle cx="38.3" cy="100.0" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="39.9" cy="103.8" r="3.3" fill="#f0d9a6" opacity="0.4"/><circle cx="80.6" cy="104.8" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="56.3" cy="115.8" r="2.4" fill="#f0d9a6" opacity="0.4"/><circle cx="81.0" cy="95.2" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="42.8" cy="105.3" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="59.6" cy="68.6" r="2.2" fill="#f0d9a6" opacity="0.4"/><circle cx="80.9" cy="91.8" r="2.4" fill="#f0d9a6" opacity="0.4"/>
+  <ellipse cx="60" cy="91" rx="18" ry="15" fill="url(#bChat-belly)"/>
+
+  <!-- 腿 -->
+  <path d="M42.0,96.1 Q44.0,96.6 45.9,96.9 Q47.8,97.4 49.9,97.7 Q51.0,99.0 52.1,100.1 Q53.4,101.1 54.8,102.2 Q54.6,103.7 54.8,105.0 Q54.6,106.3 54.7,107.8 Q53.4,108.9 52.2,109.9 Q51.0,111.0 49.6,112.0 Q47.8,112.6 45.9,113.1 Q44.0,113.4 42.0,113.9 Q40.0,113.4 38.1,113.1 Q36.2,112.6 34.1,112.3 Q33.0,111.0 31.8,110.0 Q30.6,108.9 29.2,107.8 Q29.4,106.3 29.2,105.0 Q29.4,103.7 29.6,102.3 Q30.6,101.1 31.7,100.0 Q33.0,99.0 34.3,97.9 Q36.2,97.4 38.1,96.9 Q40.0,96.6 42.0,96.1 Z" fill="url(#bChat-furB)"/>
+  <path d="M78.0,96.1 Q80.0,96.6 81.9,97.0 Q83.8,97.4 85.8,97.9 Q87.0,99.0 88.3,100.0 Q89.4,101.1 90.7,102.2 Q90.6,103.7 90.5,105.0 Q90.6,106.3 90.5,107.7 Q89.4,108.9 88.1,109.9 Q87.0,111.0 86.0,112.3 Q83.8,112.6 81.9,113.0 Q80.0,113.4 78.0,114.0 Q76.0,113.4 74.1,113.1 Q72.2,112.6 70.3,112.0 Q69.0,111.0 67.7,110.0 Q66.6,108.9 65.6,107.7 Q65.4,106.3 65.2,105.0 Q65.4,103.7 65.6,102.3 Q66.6,101.1 67.6,100.0 Q69.0,99.0 70.3,97.9 Q72.2,97.4 74.1,97.0 Q76.0,96.6 78.0,96.1 Z" fill="url(#bChat-furB)"/>
+  <ellipse cx="40" cy="106" rx="6" ry="4.5" fill="#fdf3da"/>
+  <ellipse cx="80" cy="106" rx="6" ry="4.5" fill="#fdf3da"/>
+
+  <!-- 手 -->
+  <g transform="rotate(15 32 82)"><path d="M32.0,70.0 Q33.3,70.3 34.6,71.0 Q35.9,71.5 37.4,71.8 Q38.1,73.6 38.9,75.1 Q39.7,76.6 40.5,78.2 Q40.5,80.2 40.5,82.0 Q40.5,83.8 40.7,85.9 Q39.7,87.4 39.0,89.0 Q38.1,90.4 37.2,91.8 Q35.9,92.5 34.6,93.1 Q33.3,93.7 32.0,94.5 Q30.7,93.7 29.4,93.1 Q28.1,92.5 26.6,92.2 Q25.9,90.4 25.2,88.8 Q24.3,87.4 23.3,85.9 Q23.5,83.8 23.4,82.0 Q23.5,80.2 23.5,78.2 Q24.3,76.6 25.0,75.0 Q25.9,73.6 26.6,71.8 Q28.1,71.5 29.4,70.8 Q30.7,70.3 32.0,70.0 Z" fill="url(#bChat-furB)"/></g>
+  <g transform="rotate(-15 88 82)"><path d="M88.0,69.6 Q89.3,70.3 90.7,70.7 Q91.9,71.5 93.3,72.0 Q94.1,73.6 94.8,75.2 Q95.7,76.6 96.7,78.1 Q96.5,80.2 96.5,82.0 Q96.5,83.8 96.4,85.7 Q95.7,87.4 95.0,89.0 Q94.1,90.4 93.4,92.2 Q91.9,92.5 90.6,93.0 Q89.3,93.7 88.0,94.5 Q86.7,93.7 85.3,93.2 Q84.1,92.5 82.7,92.1 Q81.9,90.4 81.1,88.9 Q80.3,87.4 79.3,85.9 Q79.5,83.8 79.6,82.0 Q79.5,80.2 79.3,78.1 Q80.3,76.6 81.1,75.1 Q81.9,73.6 82.7,72.0 Q84.1,71.5 85.3,70.7 Q86.7,70.3 88.0,69.6 Z" fill="url(#bChat-furB)"/></g>
+
+  <!-- 星星徽章 -->
+  <path d="M60 85 l2.6 5.2 5.8 0.6 -4.3 3.9 1.2 5.7 -5.3 -2.9 -5.3 2.9 1.2 -5.7 -4.3 -3.9 5.8 -0.6 Z" fill="#ffd45e" stroke="#e8a93a" stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- 耳朵 -->
+  <path d="M38.0,9.6 Q39.9,10.3 41.6,10.8 Q43.4,11.4 45.4,11.8 Q46.4,13.6 47.6,15.0 Q48.6,16.6 50.0,18.1 Q49.7,20.1 49.9,22.0 Q49.7,23.9 49.5,25.7 Q48.6,27.4 47.4,28.8 Q46.4,30.4 45.2,31.8 Q43.4,32.6 41.6,33.1 Q39.9,33.7 38.0,34.7 Q36.1,33.7 34.4,33.1 Q32.6,32.6 30.8,31.9 Q29.6,30.4 28.4,29.0 Q27.4,27.4 26.0,25.9 Q26.3,23.9 26.1,22.0 Q26.3,20.1 26.3,18.2 Q27.4,16.6 28.5,15.1 Q29.6,13.6 30.6,11.9 Q32.6,11.4 34.4,10.9 Q36.1,10.3 38.0,9.6 Z" fill="#e3c489" transform="translate(0,1)"/>
+  <path d="M38.0,9.6 Q39.9,10.3 41.6,10.8 Q43.4,11.4 45.4,11.8 Q46.4,13.6 47.6,15.0 Q48.6,16.6 50.0,18.1 Q49.7,20.1 49.9,22.0 Q49.7,23.9 49.5,25.7 Q48.6,27.4 47.4,28.8 Q46.4,30.4 45.2,31.8 Q43.4,32.6 41.6,33.1 Q39.9,33.7 38.0,34.7 Q36.1,33.7 34.4,33.1 Q32.6,32.6 30.8,31.9 Q29.6,30.4 28.4,29.0 Q27.4,27.4 26.0,25.9 Q26.3,23.9 26.1,22.0 Q26.3,20.1 26.3,18.2 Q27.4,16.6 28.5,15.1 Q29.6,13.6 30.6,11.9 Q32.6,11.4 34.4,10.9 Q36.1,10.3 38.0,9.6 Z" fill="url(#bChat-fur)"/>
+  <path d="M82.0,9.7 Q83.9,10.3 85.7,10.7 Q87.4,11.4 89.4,11.8 Q90.4,13.6 91.4,15.2 Q92.6,16.6 94.0,18.1 Q93.7,20.1 93.8,22.0 Q93.7,23.9 93.9,25.9 Q92.6,27.4 91.5,28.9 Q90.4,30.4 89.2,31.9 Q87.4,32.6 85.6,33.2 Q83.9,33.7 82.0,34.5 Q80.1,33.7 78.3,33.3 Q76.6,32.6 74.6,32.2 Q73.6,30.4 72.3,29.0 Q71.4,27.4 70.0,25.9 Q70.3,23.9 70.1,22.0 Q70.3,20.1 69.9,18.1 Q71.4,16.6 72.4,15.0 Q73.6,13.6 74.7,12.0 Q76.6,11.4 78.4,10.9 Q80.1,10.3 82.0,9.7 Z" fill="#e3c489" transform="translate(0,1)"/>
+  <path d="M82.0,9.7 Q83.9,10.3 85.7,10.7 Q87.4,11.4 89.4,11.8 Q90.4,13.6 91.4,15.2 Q92.6,16.6 94.0,18.1 Q93.7,20.1 93.8,22.0 Q93.7,23.9 93.9,25.9 Q92.6,27.4 91.5,28.9 Q90.4,30.4 89.2,31.9 Q87.4,32.6 85.6,33.2 Q83.9,33.7 82.0,34.5 Q80.1,33.7 78.3,33.3 Q76.6,32.6 74.6,32.2 Q73.6,30.4 72.3,29.0 Q71.4,27.4 70.0,25.9 Q70.3,23.9 70.1,22.0 Q70.3,20.1 69.9,18.1 Q71.4,16.6 72.4,15.0 Q73.6,13.6 74.7,12.0 Q76.6,11.4 78.4,10.9 Q80.1,10.3 82.0,9.7 Z" fill="url(#bChat-fur)"/>
+  <circle cx="38" cy="23" r="5" fill="#f0cf98"/>
+  <circle cx="82" cy="23" r="5" fill="#f0cf98"/>
+
+  <!-- 頭:毛邊陰影 + 主體 -->
+  <path d="M60.0,9.9 Q61.9,10.6 63.8,11.2 Q65.8,11.1 68.1,10.3 Q69.5,12.2 71.3,13.1 Q73.1,13.6 75.2,14.0 Q76.4,15.6 77.7,17.1 Q79.4,18.0 81.9,18.3 Q82.1,20.7 82.9,22.4 Q84.3,23.7 86.1,25.0 Q86.1,27.1 86.7,28.9 Q87.4,30.6 89.0,32.2 Q88.2,34.3 88.0,36.2 Q88.5,38.0 89.5,39.9 Q88.2,41.7 87.9,43.6 Q87.4,45.4 87.9,47.5 Q86.1,48.9 85.1,50.5 Q84.3,52.3 84.0,54.3 Q82.1,55.3 80.6,56.6 Q79.4,58.0 78.8,60.2 Q76.4,60.4 74.8,61.4 Q73.1,62.4 71.8,64.1 Q69.5,63.8 67.6,64.2 Q65.8,64.9 64.0,66.3 Q61.9,65.4 60.0,65.5 Q58.1,65.4 56.0,65.8 Q54.2,64.9 52.4,64.3 Q50.5,63.8 48.4,63.7 Q46.9,62.4 45.4,61.2 Q43.6,60.4 41.2,60.2 Q40.6,58.0 39.5,56.4 Q37.9,55.3 35.9,54.4 Q35.7,52.3 34.6,50.7 Q33.9,48.9 32.9,47.3 Q32.6,45.4 32.3,43.5 Q31.8,41.7 30.7,39.9 Q31.5,38.0 31.6,36.1 Q31.8,34.3 30.9,32.2 Q32.6,30.6 33.4,28.9 Q33.9,27.1 33.5,24.8 Q35.7,23.7 36.7,22.2 Q37.9,20.7 38.8,19.0 Q40.6,18.0 42.2,17.0 Q43.6,15.6 45.0,14.2 Q46.9,13.6 48.8,13.2 Q50.5,12.2 52.1,10.8 Q54.2,11.1 56.1,10.7 Q58.1,10.6 60.0,9.9 Z" fill="#e3c489" transform="translate(0,1.5)"/>
+  <path d="M60.0,9.9 Q61.9,10.6 63.8,11.2 Q65.8,11.1 68.1,10.3 Q69.5,12.2 71.3,13.1 Q73.1,13.6 75.2,14.0 Q76.4,15.6 77.7,17.1 Q79.4,18.0 81.9,18.3 Q82.1,20.7 82.9,22.4 Q84.3,23.7 86.1,25.0 Q86.1,27.1 86.7,28.9 Q87.4,30.6 89.0,32.2 Q88.2,34.3 88.0,36.2 Q88.5,38.0 89.5,39.9 Q88.2,41.7 87.9,43.6 Q87.4,45.4 87.9,47.5 Q86.1,48.9 85.1,50.5 Q84.3,52.3 84.0,54.3 Q82.1,55.3 80.6,56.6 Q79.4,58.0 78.8,60.2 Q76.4,60.4 74.8,61.4 Q73.1,62.4 71.8,64.1 Q69.5,63.8 67.6,64.2 Q65.8,64.9 64.0,66.3 Q61.9,65.4 60.0,65.5 Q58.1,65.4 56.0,65.8 Q54.2,64.9 52.4,64.3 Q50.5,63.8 48.4,63.7 Q46.9,62.4 45.4,61.2 Q43.6,60.4 41.2,60.2 Q40.6,58.0 39.5,56.4 Q37.9,55.3 35.9,54.4 Q35.7,52.3 34.6,50.7 Q33.9,48.9 32.9,47.3 Q32.6,45.4 32.3,43.5 Q31.8,41.7 30.7,39.9 Q31.5,38.0 31.6,36.1 Q31.8,34.3 30.9,32.2 Q32.6,30.6 33.4,28.9 Q33.9,27.1 33.5,24.8 Q35.7,23.7 36.7,22.2 Q37.9,20.7 38.8,19.0 Q40.6,18.0 42.2,17.0 Q43.6,15.6 45.0,14.2 Q46.9,13.6 48.8,13.2 Q50.5,12.2 52.1,10.8 Q54.2,11.1 56.1,10.7 Q58.1,10.6 60.0,9.9 Z" fill="url(#bChat-fur)"/>
+  <circle cx="46.9" cy="19.6" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="83.8" cy="43.5" r="3.4" fill="#f0d9a6" opacity="0.4"/><circle cx="74.3" cy="22.8" r="2.8" fill="#f0d9a6" opacity="0.4"/><circle cx="75.9" cy="23.0" r="2.8" fill="#f0d9a6" opacity="0.4"/><circle cx="72.4" cy="21.8" r="3.0" fill="#f0d9a6" opacity="0.4"/><circle cx="79.7" cy="37.1" r="3.2" fill="#f0d9a6" opacity="0.4"/><circle cx="38.0" cy="32.5" r="2.9" fill="#f0d9a6" opacity="0.4"/><circle cx="35.5" cy="38.5" r="2.2" fill="#f0d9a6" opacity="0.4"/><circle cx="61.2" cy="58.9" r="2.5" fill="#f0d9a6" opacity="0.4"/><circle cx="63.5" cy="18.4" r="3.2" fill="#f0d9a6" opacity="0.4"/>
+  <!-- 頭頂呆毛 -->
+  <path d="M57 13 q3 -8 5 -1 q3 -6 3 1" stroke="#e3c084" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <!-- 絨毛紋理 -->
+  <path d="M39 42 q-2.5 3 -0.5 6 M81 42 q2.5 3 0.5 6 M45 26 q-2.5 2 -1.5 5 M75 26 q2.5 2 1.5 5" stroke="#ecd4a2" stroke-width="1.3" fill="none" opacity="0.55"/>
+
+  <!-- 圍巾 -->
+  <path d="M38 55 q22 12 44 0 l-2 9 q-20 10 -40 0 Z" fill="url(#bChat-scarf)"/>
+  <path d="M70 61 l6 16 q1 4 -3 5 l-5 1 q-3 0.5 -3 -3 l1 -17 Z" fill="url(#bChat-scarf)"/>
+  <path d="M68 79 h8 M69 83 h7" stroke="#d85a46" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- 臉 -->
+  <ellipse cx="60" cy="45" rx="13" ry="10" fill="url(#bChat-muz)"/>
+  <path d="M56 42 q4 -3.4 8 0 q-1 3.6 -4 3.6 q-3 0 -4 -3.6 Z" fill="#8a5c3a"/>
+  <path d="M60 46 v3 M60 49 q-3 3 -6 1 M60 49 q3 3 6 1" stroke="#8a5c3a" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+  <circle cx="48" cy="36" r="3.1" fill="#4a3424"/>
+  <circle cx="72" cy="36" r="3.1" fill="#4a3424"/>
+  <circle cx="49.2" cy="34.8" r="1.1" fill="#fff"/>
+  <circle cx="73.2" cy="34.8" r="1.1" fill="#fff"/>
+  <ellipse cx="42" cy="44" rx="4.6" ry="2.9" fill="#ffb9a0" opacity="0.7"/>
+  <ellipse cx="78" cy="44" rx="4.6" ry="2.9" fill="#ffb9a0" opacity="0.7"/>
+</svg>
+                </button>
+                <div class="companion-bubble" id="companion-bubble"><span data-player-name>Fang</span>，今天慢慢來也可以，圓圓陪你把事情拆小一點。</div>
+              </div>
+              <div class="buddy-meters">
+                <div><span>飽足</span><i><b id="pet-hunger"></b></i></div>
+                <div><span>心情</span><i><b id="pet-mood"></b></i></div>
+                <div><span>親密</span><i><b id="pet-bond"></b></i></div>
+              </div>
+              <div class="action-row">
+                <button class="primary-action pet-action" data-pet="feed" type="button">餵星星</button>
+                <button class="soft-action pet-action" data-pet="study" type="button">一起陪讀</button>
+                <button class="soft-action pet-action" data-pet="play" type="button">給我鼓勵</button>
+                <button class="soft-action pet-action" data-pet="hug" type="button">想要抱抱</button>
+                <button class="soft-action pet-action" data-pet="sleep" type="button">休息一下</button>
+              </div>
+            </article>
+
+            <article class="panel companion-chat-card">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Talk With Yuan Yuan</p>
+                  <h2>圓圓聊天</h2>
+                </div>
+                <span class="mini-badge">陪你回到生活</span>
+              </div>
+              <div class="buddy-quick-row">
+                <button class="buddy-quick" data-quick="mood" type="button"><span>💛</span>聊聊心情</button>
+                <button class="buddy-quick" data-quick="split" type="button"><span>✂️</span>把任務拆小</button>
+                <button class="buddy-quick" data-quick="cheer" type="button"><span>📣</span>給我打氣</button>
+                <button class="buddy-quick" data-quick="study" type="button"><span>📚</span>陪我讀書</button>
+              </div>
+              <div class="chat-log" id="chat-log"></div>
+              <div class="comfort-prompts" id="comfort-prompts"></div>
+              <div class="chat-input-row">
+                <input id="chat-input" type="text" placeholder="跟圓圓說今天發生什麼事..." />
+                <button class="primary-action" id="send-chat" type="button">送出</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="bag-view">
+          <div class="two-col">
+            <article class="panel">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Reward Bag</p>
+                  <h2>道具背包</h2>
+                </div>
+                <span class="mini-badge">未解鎖 / 可兌換 / 已放置</span>
+              </div>
+              <div class="item-grid" id="item-grid"></div>
+            </article>
+            <article class="panel">
+              <p class="eyebrow">Item Types</p>
+              <h2>道具分類</h2>
+              <div class="guide-list">
+                <div><strong>自然類</strong><span>樹、花、草叢、池塘</span></div>
+                <div><strong>建築類</strong><span>小屋、燈塔、木橋</span></div>
+                <div><strong>裝飾類</strong><span>路燈、鞦韆、氣球、柵欄</span></div>
+                <div><strong>獎勵類</strong><span>寶箱、星星石、限定徽章</span></div>
+              </div>
+              <div class="blind-box-panel">
+                <p class="eyebrow">Mystery Box</p>
+                <h3>任務盲盒</h3>
+                <p class="muted">完成任務累積星星後，可以抽到小島裝飾。</p>
+                <button class="primary-action full-width" id="blind-box-button" type="button">開啟任務盲盒</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="stats-view">
+          <div class="stats-grid">
+            <article class="panel">
+              <p class="eyebrow">Calendar</p>
+              <h2>日曆與紀錄</h2>
+              <div class="calendar-grid" id="calendar-grid"></div>
+            </article>
+            <article class="panel">
+              <p class="eyebrow">Analytics</p>
+              <h2>任務統計</h2>
+              <div class="achievement-list">
+                <div><span>本週完成率</span><strong id="week-rate">0%</strong></div>
+                <div><span>本月完成率</span><strong id="month-rate">72%</strong></div>
+                <div><span>連續完成天數</span><strong id="streak-days">0 天</strong></div>
+                <div><span>最容易拖延</span><strong>報告資料</strong></div>
+                <div><span>小島成長</span><strong id="island-growth">0%</strong></div>
+              </div>
+            </article>
+            <article class="panel">
+              <p class="eyebrow">Trend</p>
+              <h2>星星累積趨勢</h2>
+              <div class="trend-bars">
+                <span style="height: 32%"></span>
+                <span style="height: 48%"></span>
+                <span style="height: 38%"></span>
+                <span style="height: 66%"></span>
+                <span style="height: 82%"></span>
+                <span style="height: 58%"></span>
+                <span style="height: 74%"></span>
+              </div>
+            </article>
+          </div>
+        </section>
 
         <footer class="bottom-nav">
-          <button class="nav-btn active" data-view="home" type="button">🏝️<span>小島</span></button>
-          <button class="nav-btn" data-view="tasks" type="button">📝<span>任務</span></button>
-          <button class="add-btn" data-view="jar" type="button" aria-label="星星瓶">⭐</button>
-          <button class="nav-btn" data-view="friends" type="button">💌<span>好友</span></button>
-          <button class="nav-btn" data-view="buddy" type="button">🧸<span>聊天</span></button>
-          <button class="nav-btn" data-view="bag" type="button">🎒<span>背包</span></button>
+          <button class="nav-btn active" data-view="home" type="button"><span class="nav-ico">⌂</span><span>首頁</span></button>
+          <button class="nav-btn" data-view="tasks" type="button"><span class="nav-ico">☷</span><span>任務</span></button>
+          <button class="nav-btn" data-view="addtask" type="button"><span class="nav-ico">＋</span><span>新增任務</span></button>
+          <button class="buddy-nav-btn" data-view="buddy" type="button" aria-label="圓圓陪聊">
+            <span class="buddy-nav-bubble" aria-hidden="true">
+              <svg viewBox="0 0 120 124" width="46" height="46">
+                <defs>
+                  <radialGradient id="navFur" cx="38%" cy="28%" r="88%"><stop offset="0%" stop-color="#fff7e6"/><stop offset="50%" stop-color="#f4dcab"/><stop offset="100%" stop-color="#e3c084"/></radialGradient>
+                  <radialGradient id="navMuz" cx="45%" cy="32%" r="80%"><stop offset="0%" stop-color="#fffaf2"/><stop offset="100%" stop-color="#f6e4c2"/></radialGradient>
+                </defs>
+                <circle cx="38" cy="24" r="11" fill="#ecca8e"/><circle cx="82" cy="24" r="11" fill="#ecca8e"/>
+                <circle cx="60" cy="44" r="30" fill="url(#navFur)"/>
+                <ellipse cx="60" cy="52" rx="15" ry="11" fill="url(#navMuz)"/>
+                <path d="M55 49 q5 -4 10 0 q-1.5 4.5 -5 4.5 q-3.5 0 -5 -4.5 Z" fill="#8a5c3a"/>
+                <path d="M60 54 v3.5 M60 57.5 q-3.5 3.5 -7 1 M60 57.5 q3.5 3.5 7 1" stroke="#8a5c3a" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <circle cx="47" cy="42" r="3.6" fill="#4a3424"/><circle cx="73" cy="42" r="3.6" fill="#4a3424"/>
+                <circle cx="48.3" cy="40.6" r="1.3" fill="#fff"/><circle cx="74.3" cy="40.6" r="1.3" fill="#fff"/>
+                <ellipse cx="40" cy="50" rx="5" ry="3.2" fill="#ffb9a0" opacity="0.7"/><ellipse cx="80" cy="50" rx="5" ry="3.2" fill="#ffb9a0" opacity="0.7"/>
+              </svg>
+            </span>
+            <span>圓圓陪聊</span>
+          </button>
+          <button class="nav-btn" data-view="friends" type="button"><span class="nav-ico">☺</span><span>好友</span></button>
+          <button class="nav-btn" data-view="jar" type="button"><span class="nav-ico">★</span><span>星星瓶</span></button>
         </footer>
       </section>
     </main>
 
-    <div class="tutorial-overlay show" id="tutorial-overlay" aria-modal="true" role="dialog">
+    <div class="tutorial-overlay" id="tutorial-overlay" aria-modal="true" role="dialog">
       <div class="tutorial-box" id="tutorial-box">
         <p class="eyebrow">Guide</p>
-        <h2 id="tutorial-title">歡迎來到 Fang 的任務島</h2>
-        <p id="tutorial-text">完成任務會獲得彩色星星，星星會飛進星星瓶。</p>
-        <button class="primary-action" id="tutorial-next" type="button">開始經營小島</button>
+        <h2 id="tutorial-title">歡迎來到你的任務島</h2>
+        <p id="tutorial-text">完成任務會獲得彩色星星，星星會飛進你的星星瓶。</p>
+        <button class="primary-action" id="tutorial-next" type="button">我知道啦</button>
       </div>
     </div>
-    <div class="reward-modal" id="reward-modal" aria-hidden="true"><div class="reward-card"><button class="reward-close" id="reward-close" type="button">×</button><h2>任務完成！</h2><div class="reward-stars">⭐ ⭐ ⭐</div></div></div>
+
+    <div class="reward-modal" id="reward-modal" aria-hidden="true">
+      <div class="reward-card">
+        <button class="reward-close" id="reward-close" type="button" aria-label="關閉">×</button>
+        <p class="eyebrow">Quest Reward</p>
+        <h2>任務完成！</h2>
+        <div class="reward-stars">
+          <img src="./assets/star-gem.png" alt="" />
+          <img src="./assets/star-gem.png" alt="" />
+          <img src="./assets/star-gem.png" alt="" />
+        </div>
+        <div class="reward-lines">
+          <div><span>彩色星星</span><strong>+10</strong></div>
+          <div><span>能量 XP</span><strong>+25</strong></div>
+          <div><span>小島獎勵</span><strong id="reward-prop">道具解鎖</strong></div>
+        </div>
+      </div>
+    </div>
+
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="./jar.js"></script>
     <script src="./app.js"></script>
